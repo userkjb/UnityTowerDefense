@@ -1,16 +1,32 @@
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour
+/// <summary>
+/// 게임에 만들어지는 Object들을 관리한다.
+/// </summary>
+public class ObjectManager : Singleton<ObjectManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    GameObject EnemyPrefab;
+
+    private void Start()
     {
-        
+        PrefabLoad();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PrefabLoad()
     {
-        
+        EnemyPrefab = Resources.Load<GameObject>("Prefab/Enemy");
+    }
+
+
+
+    public void SpawnEnemy()
+    {
+        if(EnemyPrefab == null)
+        {
+            Debug.LogError("Enemy Prefab is Null");
+            return;
+        }
+
+        GameObject go = Instantiate(EnemyPrefab);
     }
 }
