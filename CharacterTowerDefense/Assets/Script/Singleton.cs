@@ -1,16 +1,23 @@
 using UnityEngine;
 
-public class Singleton : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    static T _instance;
 
-    // Update is called once per frame
-    void Update()
+    public static T Instance
     {
-        
+        get
+        {
+            if (_instance == null)
+            {
+                GameObject go = new GameObject();
+                go.name = typeof(T).Name; // C#에서 제공.
+                go.AddComponent<T>();
+
+                _instance = go.GetComponent<T>();
+            }
+
+            return _instance;
+        }
     }
 }
