@@ -1,3 +1,5 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +8,15 @@ using UnityEngine;
 public class ObjectManager : Singleton<ObjectManager>
 {
     GameObject EnemyPrefab;
+
+    private List<Enemy> Enemys = new List<Enemy>();
+    public List<Enemy> GetEnemys()
+    {
+        return Enemys;
+    }
+    private int EnemyCount = 0;
+
+    
 
     private void Start()
     {
@@ -28,5 +39,10 @@ public class ObjectManager : Singleton<ObjectManager>
         }
 
         GameObject go = Instantiate(EnemyPrefab);
+        Enemy Enem = go.GetComponent<Enemy>();
+        Enem.name = $"Enemy_{EnemyCount}";
+        EnemyCount++;
+
+        Enemys.Add(Enem);
     }
 }
