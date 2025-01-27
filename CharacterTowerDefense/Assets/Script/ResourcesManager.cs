@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Resource 들을 관리한다.
+/// </summary>
 public class ResourcesManager : Singleton<ResourcesManager>
 {
     public Object Load(string _path)
