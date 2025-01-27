@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-
     [SerializeField]
     private GameObject WayPointPrefab;
     [SerializeField]
@@ -21,18 +19,6 @@ public class GameManager : MonoBehaviour
     /// WayPoint º¸°ü.
     /// </summary>
     private List<GameObject> WayPoints = new List<GameObject>();
-
-    private void Awake()
-    {
-        if(Instance != null)
-        {
-            Destroy(Instance);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
