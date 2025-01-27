@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class ResourcesManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Object Load(string _path)
     {
-        
+        return Resources.Load(_path);
     }
 
-    // Update is called once per frame
-    void Update()
+    public T Load<T>(string _path) where T : Object
     {
-        
+        return Resources.Load<T>(_path);
     }
 }
