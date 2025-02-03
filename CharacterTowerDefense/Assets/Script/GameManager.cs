@@ -26,10 +26,16 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private List<GameObject> WayPoints = new List<GameObject>();
 
+    /// <summary>
+    /// 각WayPoint들의 Position을 가지고 있는 Class
+    /// </summary>
+    private Coordinates Coordinate = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ComponentIsAdd();
+
         NullCheckFun();
 
         CreateStartPoint();
@@ -40,6 +46,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void ComponentIsAdd()
+    {
+        {
+            GameObject go = new GameObject();
+            go.name = "Coordinates";
+            go.AddComponent<Coordinates>();
+            Coordinate = go.GetComponent<Coordinates>();
+        }
+
     }
 
     private void NullCheckFun()
@@ -62,15 +79,25 @@ public class GameManager : MonoBehaviour
 
     private void CreateWaypoint()
     {
-        int WaypointPositionCount = WaypointPosition.Count;
-        for (int i = 0; i < WaypointPositionCount; i++)
+        List<Vector2> WayPos = Coordinate.GetWaypointPos();
+        int WayPosCount = WayPos.Count;
+        for (int i = 0; i < WayPosCount; i++)
         {
-            Vector3 WaypointPos = WaypointPosition[i];
+            Vector3 WaypointPos = WayPos[i];
             GameObject WayPoint = Instantiate(WayPointPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0));
             WayPoint.transform.position = new Vector3(WaypointPos.x, WaypointPos.y, WaypointPos.z);
 
             WayPoints.Add(WayPoint);
         }
+
+        //int WaypointPositionCount = WaypointPosition.Count;
+        //for (int i = 0; i < WaypointPositionCount; i++)
+        //{
+        //    Vector3 WaypointPos = WaypointPosition[i];
+        //    GameObject WayPoint = Instantiate(WayPointPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0));
+        //    WayPoint.transform.position = new Vector3(WaypointPos.x, WaypointPos.y, WaypointPos.z);
+        //    WayPoints.Add(WayPoint);
+        //}
     }
 
     public List<GameObject> GetWayPoints()
