@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        EnemySpriteLoad();
+
         if (EnemySprites.Count == 0)
         {
             Debug.LogError("Enemy Sprite Is Null");
@@ -27,6 +29,17 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void EnemySpriteLoad()
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            Sprite Re = ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}");
+
+
+        }
         
     }
 }

@@ -9,6 +9,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject StartPointPrefab;
 
+    private int LevelNum = 0;
+    public int GetLevelNum()
+    {
+        return LevelNum;
+    }
+
     /// <summary>
     /// WayPoint Position Setting
     /// </summary>
