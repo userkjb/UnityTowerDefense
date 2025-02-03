@@ -30,7 +30,7 @@ public class ObjectManager : Singleton<ObjectManager>
 
 
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(Vector3 _Pos)
     {
         if(EnemyPrefab == null)
         {
@@ -38,7 +38,7 @@ public class ObjectManager : Singleton<ObjectManager>
             return;
         }
 
-        GameObject go = Instantiate(EnemyPrefab);
+        GameObject go = Instantiate(EnemyPrefab, _Pos, Quaternion.Euler(0, 0, 0));
         Enemy Enem = go.GetComponent<Enemy>();
         Enem.name = $"Enemy_{EnemyCount}";
         EnemyCount++;

@@ -21,7 +21,7 @@ public class StartPoint : MonoBehaviour
         {
             EnemySpawnTime = 0.0f;
 
-            ObjectManager.Instance.SpawnEnemy();
+            ObjectManager.Instance.SpawnEnemy(this.transform.position);
         }
     }
 }
