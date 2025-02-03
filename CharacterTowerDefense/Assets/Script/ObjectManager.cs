@@ -22,7 +22,10 @@ public class ObjectManager : Singleton<ObjectManager>
     /// WayPoint º¸°ü.
     /// </summary>
     private List<GameObject> WayPoints = new List<GameObject>();
-
+    public List<GameObject> GetWayPoints()
+    {
+        return WayPoints;
+    }
 
 
     private void Start()
