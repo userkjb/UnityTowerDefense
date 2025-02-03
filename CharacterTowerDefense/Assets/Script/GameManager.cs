@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectEnum;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,10 +35,7 @@ public class GameManager : MonoBehaviour
 
         NullCheckFun();
 
-        CreateStartPoint();
-        CreateWaypoint();
-
-
+        CreatePoint();
     }
 
     // Update is called once per frame
@@ -73,23 +71,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CreateStartPoint()
+    private void CreatePoint()
     {
-        Instantiate(StartPointPrefab, StartPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
-    }
+        ObjectManager.Instance.SpawnStartPoint();
 
-    private void CreateWaypoint()
-    {
         List<Vector2> WayPos = Coordinate.GetWaypointPos();
-        int WayPosCount = WayPos.Count;
-        for (int i = 0; i < WayPosCount; i++)
-        {
-            Vector3 WaypointPos = WayPos[i];
-            GameObject WayPoint = Instantiate(WayPointPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0));
-            WayPoint.transform.position = new Vector3(WaypointPos.x, WaypointPos.y, WaypointPos.z);
-
-            WayPoints.Add(WayPoint);
-        }
+        ObjectManager.Instance.SpawnWaypoint(WayPos);
     }
 
     public List<GameObject> GetWayPoints()
@@ -101,7 +88,10 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 1; i <= 5; i++)
         {
-            ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}");
+            //ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}");
+            ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Enemy);
         }
+
+        ObjectManager.Instance.PrefabLoad();
     }
 }

@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 public class ObjectManager : Singleton<ObjectManager>
 {
-    GameObject EnemyPrefab;
+    private GameObject EnemyPrefab = null;
+    private GameObject StartPointPrefab = null;
+    private GameObject WayPointPrefab = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -16,16 +18,23 @@ public class ObjectManager : Singleton<ObjectManager>
     }
     private int EnemyCount = 0;
 
-    
+    /// <summary>
+    /// WayPoint º¸°ü.
+    /// </summary>
+    private List<GameObject> WayPoints = new List<GameObject>();
+
+
 
     private void Start()
     {
-        PrefabLoad();
+        
     }
 
-    private void PrefabLoad()
+    public void PrefabLoad()
     {
         EnemyPrefab = Resources.Load<GameObject>("Prefab/Enemy");
+        StartPointPrefab = Resources.Load<GameObject>("Prefab/StartPoint");
+        WayPointPrefab = Resources.Load<GameObject>("Prefab/WayPoint");
     }
 
 
@@ -46,8 +55,39 @@ public class ObjectManager : Singleton<ObjectManager>
         Enemys.Add(Enem);
     }
 
-    public void SpawnWaypoint()
+    public void SpawnStartPoint()
     {
+        if(StartPointPrefab == null)
+        {
+            Debug.LogError("Start Point Prefab Is Null");
+            return;
+        }
 
+        Instantiate(StartPointPrefab, StartPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+    }
+
+    public void SpawnWaypoint(List<Vector2> _Pos)
+    {
+        int PositionCount = _Pos.Count;
+
+        if(PositionCount == 0)
+        {
+            Debug.LogError("Is Not WayPoint XY Position Value");
+            return;
+        }
+        if (WayPointPrefab == null)
+        {
+            Debug.LogError("Is Not WayPointPrefab");
+            return;
+        }
+
+        for (int i = 0; i < PositionCount; i++)
+        {
+            Vector3 WaypointPos = _Pos[i];
+            GameObject WayPoint = Instantiate(WayPointPrefab);
+            WayPoint.transform.position = new Vector3(WaypointPos.x, WaypointPos.y, WaypointPos.z);
+
+            WayPoints.Add(WayPoint);
+        }
     }
 }
