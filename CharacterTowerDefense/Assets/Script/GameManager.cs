@@ -16,12 +16,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// WayPoint Position Setting
-    /// </summary>
-    [SerializeField]
-    private List<Vector2> WaypointPosition = new List<Vector2>();
-
-    /// <summary>
     /// WayPoint º¸°ü.
     /// </summary>
     private List<GameObject> WayPoints = new List<GameObject>();
@@ -89,15 +83,6 @@ public class GameManager : MonoBehaviour
 
             WayPoints.Add(WayPoint);
         }
-
-        //int WaypointPositionCount = WaypointPosition.Count;
-        //for (int i = 0; i < WaypointPositionCount; i++)
-        //{
-        //    Vector3 WaypointPos = WaypointPosition[i];
-        //    GameObject WayPoint = Instantiate(WayPointPrefab, Vector3.zero, Quaternion.Euler(0, 0, 0));
-        //    WayPoint.transform.position = new Vector3(WaypointPos.x, WaypointPos.y, WaypointPos.z);
-        //    WayPoints.Add(WayPoint);
-        //}
     }
 
     public List<GameObject> GetWayPoints()
