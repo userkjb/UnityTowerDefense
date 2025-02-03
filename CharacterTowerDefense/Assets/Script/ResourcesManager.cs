@@ -57,7 +57,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
         return EnemyResources;
     }
 
-    public Sprite GetEnemyNumber(string _EnemyNum)
+    public Sprite GetEnemySprite(string _EnemyNum)
     {
         return EnemyResources[_EnemyNum];
     }

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
         // Sprite Renderer
         //gameObject.GetComponent<SpriteRenderer>().sprite = EnemySprites[0];
-        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetEnemyNumber("Enemy01");
+        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetEnemySprite("Enemy01");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
