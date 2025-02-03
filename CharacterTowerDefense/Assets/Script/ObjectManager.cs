@@ -45,4 +45,9 @@ public class ObjectManager : Singleton<ObjectManager>
 
         Enemys.Add(Enem);
     }
+
+    public void SpawnWaypoint()
+    {
+
+    }
 }

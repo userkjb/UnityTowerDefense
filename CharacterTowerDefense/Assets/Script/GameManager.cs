@@ -28,12 +28,16 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        EnemySpriteLoad();
+
         ComponentIsAdd();
 
         NullCheckFun();
 
         CreateStartPoint();
         CreateWaypoint();
+
+
     }
 
     // Update is called once per frame
@@ -42,6 +46,9 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// WayPoint 좌표 가져오기.
+    /// </summary>
     private void ComponentIsAdd()
     {
         {
@@ -88,5 +95,13 @@ public class GameManager : MonoBehaviour
     public List<GameObject> GetWayPoints()
     {
         return WayPoints;
+    }
+
+    private void EnemySpriteLoad()
+    {
+        for (int i = 1; i <= 5; i++)
+        {
+            ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}");
+        }
     }
 }
