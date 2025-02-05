@@ -8,20 +8,20 @@ using static ObjectEnum;
 /// </summary>
 public class ResourcesManager : Singleton<ResourcesManager>
 {
-
+    private Dictionary<string, Sprite> AllResources = new Dictionary<string, Sprite>();
+    private Dictionary<string, GameObject> AllPrefab = new Dictionary<string, GameObject>();
     private Dictionary<string, Sprite> EnemyResources = new Dictionary<string, Sprite>();
     private Dictionary<string, Sprite> TowerResources = new Dictionary<string, Sprite>();
 
 
-    public Object Load(string _path)
-    {
-        return Resources.Load(_path);
-    }
-
-    public T Load<T>(string _path) where T : Object
-    {
-        return Resources.Load<T>(_path);
-    }
+    //public Object Load(string _path)
+    //{
+    //    return Resources.Load(_path);
+    //}
+    //public T Load<T>(string _path) where T : Object
+    //{
+    //    return Resources.Load<T>(_path);
+    //}
 
     public void Load<T>(string _path, ResourceType _Type = ResourceType.None) where T : Object
     {
@@ -32,6 +32,16 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Resources.Load<T>(_path);
                     break;
                 }
+            case ResourceType.Prefab:
+                {
+                    // Prefab/Enemy
+                    Object ob = Resources.Load<T>(_path);
+                    GameObject go = ob as GameObject;
+                    string name = _path;
+                    name = name.Substring(7);
+                    AllPrefab.Add(name, go);
+                    break;
+                }
             case ResourceType.Enemy:
                 {
                     //$"Sprites/Enemy0{i}"
@@ -39,7 +49,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Sprite sprite = ob as Sprite;
                     string name = _path;
                     name = name.Substring(name.Length - 7);
-                    EnemyResources.Add(name, sprite);
+                    AllResources.Add(name, sprite);
                     break;
                 }
             case ResourceType.Tower:
@@ -49,7 +59,12 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Sprite sprite = ob as Sprite;
                     string name = _path;
                     name = name.Substring(name.Length - 12);
-                    TowerResources.Add(name, sprite);
+                    AllResources.Add(name, sprite);
+                    break;
+                }
+            case ResourceType.Bullet:
+                {
+                    Resources.Load<T>(_path);
                     break;
                 }
             default:
@@ -59,11 +74,16 @@ public class ResourcesManager : Singleton<ResourcesManager>
 
     public Sprite GetEnemySprite(string _EnemyNum)
     {
-        return EnemyResources[_EnemyNum];
+        return AllResources[_EnemyNum];
     }
 
     public Sprite GetTowerSprite(string _TowerName)
     {
-        return TowerResources[_TowerName];
+        return AllResources[_TowerName];
+    }
+
+    public GameObject GetPrefab(string _PrefabName)
+    {
+        return AllPrefab[_PrefabName];
     }
 }

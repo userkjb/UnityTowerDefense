@@ -1,18 +1,19 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
+using static ObjectEnum;
 
 /// <summary>
 /// 게임에 만들어지는 Object들을 관리한다.
 /// </summary>
 public class ObjectManager : Singleton<ObjectManager>
 {
-    private GameObject EnemyPrefab = null;
-    private GameObject StartPointPrefab = null;
-    private GameObject WayPointPrefab = null;
-    private GameObject EnemySpawnerPrefab = null;
-    private GameObject EndPointPrefab = null;
-    private GameObject TowerPrefab = null;
+    //private GameObject EnemyPrefab = null;
+    //private GameObject StartPointPrefab = null;
+    //private GameObject WayPointPrefab = null;
+    //private GameObject EnemySpawnerPrefab = null;
+    //private GameObject EndPointPrefab = null;
+    //private GameObject TowerPrefab = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -38,17 +39,18 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void PrefabLoad()
     {
-        EnemyPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/Enemy");
-        StartPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/StartPoint");
-        WayPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/WayPoint");
-        EnemySpawnerPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/EnemySpawner");
-        EndPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/EndPoint");
-        TowerPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/Tower");
+        ResourcesManager.Instance.Load<GameObject>("Prefab/Enemy", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/StartPoint", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/WayPoint", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/EnemySpawner", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/EndPoint", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/Tower", ResourceType.Prefab);
     }
 
     public void SpawnEnemy(Vector3 _Pos)
     {
-        if(EnemyPrefab == null)
+        GameObject EnemyPrefab = ResourcesManager.Instance.GetPrefab("Enemy");
+        if (EnemyPrefab == null)
         {
             Debug.LogError("Enemy Prefab is Null");
             return;
@@ -71,6 +73,7 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void SpawnStartPoint()
     {
+        GameObject StartPointPrefab = ResourcesManager.Instance.GetPrefab("StartPoint");
         if(StartPointPrefab == null)
         {
             Debug.LogError("Start Point Prefab Is Null");
@@ -84,6 +87,7 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void SpawnWaypoint(List<Vector2> _Pos)
     {
+        GameObject WayPointPrefab = ResourcesManager.Instance.GetPrefab("WayPoint");
         int PositionCount = _Pos.Count;
 
         if(PositionCount == 0)
@@ -109,11 +113,18 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void SpawnEnemySpawner()
     {
+        GameObject EnemySpawnerPrefab = ResourcesManager.Instance.GetPrefab("EnemySpawner");
+        if(EnemySpawnerPrefab == null)
+        {
+            Debug.LogError("Enemy Spawner Prefab Is Null");
+            return;
+        }
         Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.identity);
     }
 
     public void SpawnEndPoint()
     {
+        GameObject EndPointPrefab = ResourcesManager.Instance.GetPrefab("EndPoint");
         if (EndPointPrefab == null)
         {
             Debug.LogError("End Point Prefab Is Null");
@@ -124,18 +135,13 @@ public class ObjectManager : Singleton<ObjectManager>
         WayPoints.Add(EndPointPrefab);
     }
 
-    public GameObject GetEndPoint()
-    {
-        if (EndPointPrefab == null)
-        {
-            Debug.LogError("End Point Prefab Is Null!");
-            return null;
-        }
-        return EndPointPrefab;
-    }
-
     public void SpawnTower(Vector3 _Pos)
     {
+        GameObject TowerPrefab = ResourcesManager.Instance.GetPrefab("Tower");
+        if (TowerPrefab == null)
+        {
+            return;
+        }
         GameObject go = Instantiate(TowerPrefab, _Pos, Quaternion.identity); // identity = 회전 없음.
         Tower TowerObject = go.GetComponent<Tower>();
         Towers.Add(TowerObject);
