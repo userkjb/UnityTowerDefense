@@ -72,6 +72,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // Bullet
+        {
+            ResourcesManager.Instance.Load<Sprite>("Sprites/Projectile01", ResourceType.Bullet);
+        }
+
         ObjectManager.Instance.PrefabLoad();
     }
 }

@@ -24,4 +24,9 @@ public class Movement2D : MonoBehaviour
     {
         return MoveSpeed;
     }
+
+    public void SetMoveSpeed(float _Speed)
+    {
+        MoveSpeed = _Speed;
+    }
 }

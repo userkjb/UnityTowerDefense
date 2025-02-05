@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour
         
         gameObject.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetTowerSprite("Tower01_Lv01");
+        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
     }
 
     // Update is called once per frame
