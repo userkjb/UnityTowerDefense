@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using static ObjectEnum;
 
@@ -9,7 +10,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
 {
 
     private Dictionary<string, Sprite> EnemyResources = new Dictionary<string, Sprite>();
-    private Dictionary<string, Resources> TowerResources = new Dictionary<string, Resources>();
+    private Dictionary<string, Sprite> TowerResources = new Dictionary<string, Sprite>();
 
 
     public Object Load(string _path)
@@ -43,7 +44,12 @@ public class ResourcesManager : Singleton<ResourcesManager>
                 }
             case ResourceType.Tower:
                 {
-
+                    // $"Sprites/Tower0i_Lv0k"
+                    Object ob = Resources.Load<T>(_path);
+                    Sprite sprite = ob as Sprite;
+                    string name = _path;
+                    name = name.Substring(name.Length - 12);
+                    TowerResources.Add(name, sprite);
                     break;
                 }
             default:
@@ -51,13 +57,13 @@ public class ResourcesManager : Singleton<ResourcesManager>
         }
     }
 
-    public Dictionary<string, Sprite> GetEnemyResources()
+    public Sprite GetEnemySprite(StringView _EnemyNum)
     {
-        return EnemyResources;
+        return EnemyResources[_EnemyNum.ToString()];
     }
 
-    public Sprite GetEnemySprite(string _EnemyNum)
+    public Sprite GetTowerSprite(StringView _TowerName)
     {
-        return EnemyResources[_EnemyNum];
+        return TowerResources[_TowerName.ToString()];
     }
 }

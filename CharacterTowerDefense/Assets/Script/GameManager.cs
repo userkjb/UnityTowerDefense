@@ -94,6 +94,14 @@ public class GameManager : MonoBehaviour
             ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Enemy);
         }
 
+        for(int i = 1; i <= 3; i++)
+        {
+            for(int k = 1; k <= 3; k++)
+            {
+                ResourcesManager.Instance.Load<Sprite>($"Sprites/Tower0{i}_Lv0{k}", ResourceType.Tower);
+            }
+        }
+
         ObjectManager.Instance.PrefabLoad();
     }
 }
