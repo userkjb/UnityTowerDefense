@@ -7,6 +7,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private float EnemySpawnTime = 0.0f;
 
+    private int SpawnCount = 0;
+    [SerializeField]
+    private int SettingSpawnCount = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -16,6 +20,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SettingSpawnCount == SpawnCount)
+        {
+            return;
+        }
+
         CalTime += Time.deltaTime;
 
         if (CalTime >= EnemySpawnTime)
@@ -23,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
             CalTime = 0.0f;
 
             ObjectManager.Instance.SpawnEnemy(this.transform.position);
+            SpawnCount++;
         }
     }
 }
