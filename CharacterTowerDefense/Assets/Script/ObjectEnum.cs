@@ -10,4 +10,11 @@ public class ObjectEnum : MonoBehaviour
         Tower,
         Bullet,
     }
+
+    public enum TowerStatus
+    {
+        None,
+        SearchTarget,
+        Attack,
+    }
 }
