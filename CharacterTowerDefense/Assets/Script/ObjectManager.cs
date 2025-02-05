@@ -45,6 +45,7 @@ public class ObjectManager : Singleton<ObjectManager>
         ResourcesManager.Instance.Load<GameObject>("Prefab/EnemySpawner", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/EndPoint", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/Tower", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/Bullet", ResourceType.Prefab);
     }
 
     public void SpawnEnemy(Vector3 _Pos)
@@ -145,5 +146,16 @@ public class ObjectManager : Singleton<ObjectManager>
         GameObject go = Instantiate(TowerPrefab, _Pos, Quaternion.identity); // identity = 회전 없음.
         Tower TowerObject = go.GetComponent<Tower>();
         Towers.Add(TowerObject);
+    }
+
+    public void SpawnBullet(GameObject _Bullet, Vector3 _Pos)
+    {
+        if(_Bullet == null)
+        {
+            Debug.LogError("Bullet Prefab Is Null");
+            return;
+        }
+
+        Instantiate(_Bullet, _Pos, Quaternion.identity);
     }
 }
