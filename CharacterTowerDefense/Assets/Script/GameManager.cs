@@ -5,21 +5,11 @@ using static ObjectEnum;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject WayPointPrefab;
-    [SerializeField]
-    private GameObject StartPointPrefab;
-
     private int LevelNum = 0;
     public int GetLevelNum()
     {
         return LevelNum;
     }
-
-    /// <summary>
-    /// WayPoint 보관.
-    /// </summary>
-    private List<GameObject> WayPoints = new List<GameObject>();
 
     /// <summary>
     /// 각WayPoint들의 Position을 가지고 있는 Class
@@ -32,8 +22,6 @@ public class GameManager : MonoBehaviour
         EnemySpriteLoad();
 
         ComponentIsAdd();
-
-        NullCheckFun();
 
         CreatePoint();
     }
@@ -58,19 +46,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void NullCheckFun()
-    {
-        if (WayPointPrefab == null)
-        {
-            Debug.LogError("Waypoint Prefab Is Null");
-        }
-
-        if(StartPointPrefab == null)
-        {
-            Debug.LogError("StartPoint Prefab Is Null");
-        }
-    }
-
     private void CreatePoint()
     {
         ObjectManager.Instance.SpawnStartPoint();
@@ -79,11 +54,6 @@ public class GameManager : MonoBehaviour
         ObjectManager.Instance.SpawnWaypoint(WayPos);
 
         ObjectManager.Instance.SpawnEndPoint();
-    }
-
-    public List<GameObject> GetWayPoints()
-    {
-        return WayPoints;
     }
 
     private void EnemySpriteLoad()
