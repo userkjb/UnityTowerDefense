@@ -7,14 +7,8 @@ public class Movement2D : MonoBehaviour
     /// </summary>
     [SerializeField]
     private float MoveSpeed = 0.0f;
-    /// <summary>
-    /// 이동 방향
-    /// </summary>
-    [SerializeField]
+
     private Vector3 MoveDir = Vector3.zero;
-
-
-
 
     private void Update()
     {
