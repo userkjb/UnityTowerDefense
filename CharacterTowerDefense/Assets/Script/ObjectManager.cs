@@ -12,6 +12,7 @@ public class ObjectManager : Singleton<ObjectManager>
     private GameObject WayPointPrefab = null;
     private GameObject EnemySpawnerPrefab = null;
     private GameObject EndPointPrefab = null;
+    private GameObject TowerPrefab = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -42,6 +43,7 @@ public class ObjectManager : Singleton<ObjectManager>
         WayPointPrefab = Resources.Load<GameObject>("Prefab/WayPoint");
         EnemySpawnerPrefab = Resources.Load<GameObject>("Prefab/EnemySpawner");
         EndPointPrefab = Resources.Load<GameObject>("Prefab/EndPoint");
+        TowerPrefab = Resources.Load<GameObject>("Prefab/Tower");
     }
 
 
@@ -127,5 +129,10 @@ public class ObjectManager : Singleton<ObjectManager>
             return null;
         }
         return EndPointPrefab;
+    }
+
+    public void SpawnTower()
+    {
+        Instantiate(TowerPrefab);
     }
 }
