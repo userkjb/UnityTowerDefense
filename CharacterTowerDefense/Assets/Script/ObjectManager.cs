@@ -137,9 +137,9 @@ public class ObjectManager : Singleton<ObjectManager>
         return EndPointPrefab;
     }
 
-    public void SpawnTower()
+    public void SpawnTower(Vector3 _Pos)
     {
-        GameObject go = Instantiate(TowerPrefab);
+        GameObject go = Instantiate(TowerPrefab, _Pos, Quaternion.identity); // identity = 회전 없음.
         Tower TowerObject = go.GetComponent<Tower>();
         Towers.Add(TowerObject);
     }
