@@ -36,23 +36,15 @@ public class ObjectManager : Singleton<ObjectManager>
         return Towers;
     }
 
-
-    private void Start()
-    {
-        
-    }
-
     public void PrefabLoad()
     {
-        EnemyPrefab = Resources.Load<GameObject>("Prefab/Enemy");
-        StartPointPrefab = Resources.Load<GameObject>("Prefab/StartPoint");
-        WayPointPrefab = Resources.Load<GameObject>("Prefab/WayPoint");
-        EnemySpawnerPrefab = Resources.Load<GameObject>("Prefab/EnemySpawner");
-        EndPointPrefab = Resources.Load<GameObject>("Prefab/EndPoint");
-        TowerPrefab = Resources.Load<GameObject>("Prefab/Tower");
+        EnemyPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/Enemy");
+        StartPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/StartPoint");
+        WayPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/WayPoint");
+        EnemySpawnerPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/EnemySpawner");
+        EndPointPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/EndPoint");
+        TowerPrefab = ResourcesManager.Instance.Load<GameObject>("Prefab/Tower");
     }
-
-
 
     public void SpawnEnemy(Vector3 _Pos)
     {
@@ -71,6 +63,12 @@ public class ObjectManager : Singleton<ObjectManager>
         Enemys.Add(EnemObject);
     }
 
+    public void DestroyEnemy(Enemy _Enemy)
+    {
+        Enemys.Remove(_Enemy);
+        Destroy(_Enemy.gameObject);
+    }
+
     public void SpawnStartPoint()
     {
         if(StartPointPrefab == null)
@@ -79,11 +77,10 @@ public class ObjectManager : Singleton<ObjectManager>
             return;
         }
 
-        Instantiate(StartPointPrefab, StartPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+        Instantiate(StartPointPrefab, StartPointPrefab.transform.position, Quaternion.identity);
 
         WayPoints.Add(StartPointPrefab);
     }
-
 
     public void SpawnWaypoint(List<Vector2> _Pos)
     {
@@ -112,7 +109,7 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void SpawnEnemySpawner()
     {
-        Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+        Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.identity);
     }
 
     public void SpawnEndPoint()
@@ -122,7 +119,7 @@ public class ObjectManager : Singleton<ObjectManager>
             Debug.LogError("End Point Prefab Is Null");
             return;
         }
-        Instantiate(EndPointPrefab, EndPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+        Instantiate(EndPointPrefab, EndPointPrefab.transform.position, Quaternion.identity);
 
         WayPoints.Add(EndPointPrefab);
     }

@@ -74,7 +74,13 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            OnDie();
         }
+    }
+
+    private void OnDie()
+    {
+        ObjectManager.Instance.DestroyEnemy(this);
     }
 }
