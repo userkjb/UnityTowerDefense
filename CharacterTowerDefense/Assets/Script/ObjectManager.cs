@@ -30,6 +30,12 @@ public class ObjectManager : Singleton<ObjectManager>
         return WayPoints;
     }
 
+    private List<Tower> Towers = new List<Tower>();
+    public List<Tower> GetTowers()
+    {
+        return Towers;
+    }
+
 
     private void Start()
     {
@@ -57,12 +63,12 @@ public class ObjectManager : Singleton<ObjectManager>
         }
 
         GameObject go = Instantiate(EnemyPrefab, _Pos, Quaternion.Euler(0, 0, 0));
-        Enemy Enem = go.GetComponent<Enemy>();
-        Enem.name = $"Enemy_{EnemyCount}";
-        Enem.EnemySetting();
+        Enemy EnemObject = go.GetComponent<Enemy>();
+        EnemObject.name = $"Enemy_{EnemyCount}";
+        EnemObject.EnemySetting();
         EnemyCount++;
 
-        Enemys.Add(Enem);
+        Enemys.Add(EnemObject);
     }
 
     public void SpawnStartPoint()
@@ -133,6 +139,8 @@ public class ObjectManager : Singleton<ObjectManager>
 
     public void SpawnTower()
     {
-        Instantiate(TowerPrefab);
+        GameObject go = Instantiate(TowerPrefab);
+        Tower TowerObject = go.GetComponent<Tower>();
+        Towers.Add(TowerObject);
     }
 }
