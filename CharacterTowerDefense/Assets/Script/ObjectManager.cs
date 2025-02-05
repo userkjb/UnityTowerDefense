@@ -10,6 +10,8 @@ public class ObjectManager : Singleton<ObjectManager>
     private GameObject EnemyPrefab = null;
     private GameObject StartPointPrefab = null;
     private GameObject WayPointPrefab = null;
+    private GameObject EnemySpawnerPrefab = null;
+    private GameObject EndPointPrefab = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -38,6 +40,8 @@ public class ObjectManager : Singleton<ObjectManager>
         EnemyPrefab = Resources.Load<GameObject>("Prefab/Enemy");
         StartPointPrefab = Resources.Load<GameObject>("Prefab/StartPoint");
         WayPointPrefab = Resources.Load<GameObject>("Prefab/WayPoint");
+        EnemySpawnerPrefab = Resources.Load<GameObject>("Prefab/EnemySpawner");
+        EndPointPrefab = Resources.Load<GameObject>("Prefab/EndPoint");
     }
 
 
@@ -53,6 +57,7 @@ public class ObjectManager : Singleton<ObjectManager>
         GameObject go = Instantiate(EnemyPrefab, _Pos, Quaternion.Euler(0, 0, 0));
         Enemy Enem = go.GetComponent<Enemy>();
         Enem.name = $"Enemy_{EnemyCount}";
+        Enem.EnemySetting();
         EnemyCount++;
 
         Enemys.Add(Enem);
@@ -67,7 +72,10 @@ public class ObjectManager : Singleton<ObjectManager>
         }
 
         Instantiate(StartPointPrefab, StartPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+
+        WayPoints.Add(StartPointPrefab);
     }
+
 
     public void SpawnWaypoint(List<Vector2> _Pos)
     {
@@ -92,5 +100,32 @@ public class ObjectManager : Singleton<ObjectManager>
 
             WayPoints.Add(WayPoint);
         }
+    }
+
+    public void SpawnEnemySpawner()
+    {
+        Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+    }
+
+    public void SpawnEndPoint()
+    {
+        if (EndPointPrefab == null)
+        {
+            Debug.LogError("End Point Prefab Is Null");
+            return;
+        }
+        Instantiate(EndPointPrefab, EndPointPrefab.transform.position, Quaternion.Euler(0, 0, 0));
+
+        WayPoints.Add(EndPointPrefab);
+    }
+
+    public GameObject GetEndPoint()
+    {
+        if (EndPointPrefab == null)
+        {
+            Debug.LogError("End Point Prefab Is Null!");
+            return null;
+        }
+        return EndPointPrefab;
     }
 }

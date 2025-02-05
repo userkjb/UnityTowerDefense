@@ -101,12 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb82076af01030248b04d1ac05c45cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySprites:
-  - {fileID: 3090421441385258324, guid: 88bb569a3722ae24cb5fecd8619bc0be, type: 3}
-  - {fileID: 7318640794054012675, guid: 5dad10d24fc2bc74e85460edb2253ddb, type: 3}
-  - {fileID: 3314502090014141176, guid: 5f3aa0ee88bc0f843965b6b28755a81a, type: 3}
-  - {fileID: -6818235362350405652, guid: c670d6951a1ee234982db6f196588e8d, type: 3}
-  - {fileID: 8921298508083580650, guid: 19eef5a5e505c1649ad736ce6dabee70, type: 3}
 --- !u!114 &3604581617079676280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,5 +113,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990d82041c700bd4585e3b8dd2f8c04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 0
+  MoveSpeed: 5
   MoveDir: {x: 0, y: 0, z: 0}

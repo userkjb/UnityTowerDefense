@@ -30,10 +30,16 @@ public class Enemy : MonoBehaviour
     public void EnemySetting()
     {
         movement2D = GetComponent<Movement2D>();
+        if (movement2D == null)
+        {
+            Debug.LogError("Movement2D Is Null");
+            return;
+        }
 
         WaypointCount = ObjectManager.Instance.GetWayPoints().Count;
 
-        this.transform.position = ObjectManager.Instance.GetWayPoints()[WaypointCount].transform.position;
+        // 생성 위치 설정.
+        this.transform.position = ObjectManager.Instance.GetWayPoints()[CurrentIndex].transform.position;
 
         StartCoroutine("OnMove");
     }
@@ -47,7 +53,7 @@ public class Enemy : MonoBehaviour
             // 회전.
             this.transform.Rotate(Vector3.forward * RotateSpeed);
 
-            if(Vector3.Distance(this.transform.position, ObjectManager.Instance.GetWayPoints()[WaypointCount].transform.position) < 0.02f * movement2D.GetMoveSpeed())
+            if(Vector3.Distance(this.transform.position, ObjectManager.Instance.GetWayPoints()[CurrentIndex].transform.position) < 0.02f * movement2D.GetMoveSpeed())
             {
                 NextMoveDirection();
             }
@@ -58,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     private void NextMoveDirection()
     {
-        if (CurrentIndex < WaypointCount)
+        if (CurrentIndex < WaypointCount-1)
         {
             this.transform.position = ObjectManager.Instance.GetWayPoints()[CurrentIndex].transform.position;
             CurrentIndex++;

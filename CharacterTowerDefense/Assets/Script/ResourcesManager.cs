@@ -37,8 +37,7 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Object ob = Resources.Load<T>(_path);
                     Sprite sprite = ob as Sprite;
                     string name = _path;
-                    name.Substring(name.Length - 7);
-
+                    name = name.Substring(name.Length - 7);
                     EnemyResources.Add(name, sprite);
                     break;
                 }

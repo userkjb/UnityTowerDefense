@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
 
         List<Vector2> WayPos = Coordinate.GetWaypointPos();
         ObjectManager.Instance.SpawnWaypoint(WayPos);
+
+        ObjectManager.Instance.SpawnEndPoint();
     }
 
     public List<GameObject> GetWayPoints()
