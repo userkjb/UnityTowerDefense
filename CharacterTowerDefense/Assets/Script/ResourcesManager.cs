@@ -57,13 +57,13 @@ public class ResourcesManager : Singleton<ResourcesManager>
         }
     }
 
-    public Sprite GetEnemySprite(StringView _EnemyNum)
+    public Sprite GetEnemySprite(string _EnemyNum)
     {
-        return EnemyResources[_EnemyNum.ToString()];
+        return EnemyResources[_EnemyNum];
     }
 
-    public Sprite GetTowerSprite(StringView _TowerName)
+    public Sprite GetTowerSprite(string _TowerName)
     {
-        return TowerResources[_TowerName.ToString()];
+        return TowerResources[_TowerName];
     }
 }

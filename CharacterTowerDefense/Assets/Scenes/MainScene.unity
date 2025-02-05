@@ -6241,8 +6241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0b875457aceba438a6570fad8d5dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WayPointPrefab: {fileID: 7711838743158459050, guid: ef794cffc26d88b4b8ef2e4eff647f5f, type: 3}
-  StartPointPrefab: {fileID: 7711838743158459050, guid: 9fc001dabf0450640bfb61362173753a, type: 3}
 --- !u!4 &2034204728
 Transform:
   m_ObjectHideFlags: 0
