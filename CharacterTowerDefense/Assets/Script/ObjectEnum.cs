@@ -11,7 +11,7 @@ public class ObjectEnum : MonoBehaviour
         Bullet,
     }
 
-    public enum TowerStatus
+    public enum ETowerState
     {
         None,
         SearchTarget,
