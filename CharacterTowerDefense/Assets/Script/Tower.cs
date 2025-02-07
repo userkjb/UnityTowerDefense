@@ -129,4 +129,9 @@ public class Tower : MonoBehaviour
         }
         ObjectManager.Instance.SpawnBullet(Bullet, this.BulletSpawnPosition.position);
     }
+
+    public ETowerState GetTowerState()
+    {
+        return TowerStatus;
+    }
 }
