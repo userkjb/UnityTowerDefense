@@ -19,7 +19,8 @@ public class Bullet : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 
-        gameObject.GetComponent<Movement2D>().SetMoveSpeed(5.0f);
+        // Bullet 이동 속도 설정.
+        gameObject.GetComponent<Movement2D>().SetMoveSpeed(7.0f);
 
         gameObject.GetComponent<CircleCollider2D>().isTrigger = true;
         gameObject.GetComponent<CircleCollider2D>().radius = 0.06f;
