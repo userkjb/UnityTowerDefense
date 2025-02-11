@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
     private float CalTime = 0.0f;
 
     [SerializeField]
-    private float EnemySpawnTime = 0.0f;
+    private float EnemySpawnTime = 0.0f; // 적 생성 시간
 
     private int SpawnCount = 0;
     [SerializeField]
