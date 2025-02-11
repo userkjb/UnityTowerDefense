@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private Movement2D Movement = null;
     private Transform Target = null;
+    private int BulletDamage = 0;
 
     private void Awake()
     {
@@ -28,12 +29,14 @@ public class Bullet : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
     }
 
-    public void BulletSetUp(Transform _Target)
+    public void BulletSetUp(Transform _Target, int _BulletDamage)
     {
         if (this.Target == null)
         {
             this.Target = _Target;
         }
+
+        this.BulletDamage = _BulletDamage;
     }
 
     // Update is called once per frame
@@ -67,7 +70,8 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        collision.GetComponent<Enemy>().OnDie(); // 대미지가 있으면 이 부분 수정 필요.
+        //collision.GetComponent<Enemy>().OnDie(); // 대미지가 있으면 이 부분 수정 필요.
+        collision.GetComponent<EnemyHP>().TackDamage(BulletDamage);
         Destroy(gameObject);
     }
 }

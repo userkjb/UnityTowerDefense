@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         gameObject.AddComponent<CircleCollider2D>();
+        gameObject.AddComponent<EnemyHP>();
     }
 
     void Start()

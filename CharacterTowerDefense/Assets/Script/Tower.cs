@@ -8,12 +8,13 @@ public class Tower : MonoBehaviour
     private GameObject goBullet;
     [SerializeField]
     private Transform BulletSpawnPosition;
+    private Transform AttackTarget = null;
     [SerializeField]
     private float AttackSpeed = 0.5f;
     [SerializeField]
     private float AttackRange = 2.0f;
     private float AttackTime = 0.0f;
-    private Transform AttackTarget = null;
+    private int TowerDamage = 1;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -134,7 +135,7 @@ public class Tower : MonoBehaviour
         }
 
         GameObject CreateBullet = ObjectManager.Instance.SpawnBullet(goBullet, this.BulletSpawnPosition.position);
-        CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget);
+        CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget, TowerDamage);
     }
 
     public ETowerState GetTowerState()
