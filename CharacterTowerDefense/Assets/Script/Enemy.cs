@@ -9,6 +9,11 @@ public class Enemy : MonoBehaviour
     private int CurrentIndex = 0;
     private int RotateSpeed = 10;
 
+    private void Awake()
+    {
+        gameObject.AddComponent<CircleCollider2D>();
+    }
+
     void Start()
     {        
         // Component Setting
@@ -79,7 +84,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDie()
+    public void OnDie()
     {
         ObjectManager.Instance.DestroyEnemy(this);
     }

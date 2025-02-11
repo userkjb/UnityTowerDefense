@@ -5,7 +5,7 @@ using static ObjectEnum;
 public class Tower : MonoBehaviour
 {
     private ETowerState TowerStatus = ETowerState.None;
-    private GameObject Bullet;
+    private GameObject goBullet;
     [SerializeField]
     private Transform BulletSpawnPosition;
     [SerializeField]
@@ -25,8 +25,8 @@ public class Tower : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
         gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
 
-        Bullet = ResourcesManager.Instance.GetPrefab("Bullet");
-        if(Bullet == null)
+        goBullet = ResourcesManager.Instance.GetPrefab("Bullet");
+        if(goBullet == null)
         {
             Debug.LogError("Bullet Prefab Is Null");
             return;
@@ -114,20 +114,27 @@ public class Tower : MonoBehaviour
             if(AttackTime >= AttackSpeed)
             {
                 AttackTime = 0.0f;
-                SpawnBulletFun();
+                SpawnBulletFun(AttackTarget);
             }
             yield return null;
         }
     }
 
-    private void SpawnBulletFun()
+    private void SpawnBulletFun(Transform _AttackTarget)
     {
-        if (Bullet == null)
+        if (goBullet == null)
         {
             Debug.LogError("Bullet Prefab Is Null");
             return;
         }
-        ObjectManager.Instance.SpawnBullet(Bullet, this.BulletSpawnPosition.position);
+
+        if(_AttackTarget == null)
+        {
+            Debug.Log("Attack Target Is Null");
+        }
+
+        GameObject CreateBullet = ObjectManager.Instance.SpawnBullet(goBullet, this.BulletSpawnPosition.position);
+        CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget);
     }
 
     public ETowerState GetTowerState()

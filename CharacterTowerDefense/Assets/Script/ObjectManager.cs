@@ -148,14 +148,14 @@ public class ObjectManager : Singleton<ObjectManager>
         Towers.Add(TowerObject);
     }
 
-    public void SpawnBullet(GameObject _Bullet, Vector3 _Pos)
+    public GameObject SpawnBullet(GameObject _Bullet, Vector3 _Pos)
     {
         if(_Bullet == null)
         {
             Debug.LogError("Bullet Prefab Is Null");
-            return;
+            return null;
         }
 
-        Instantiate(_Bullet, _Pos, Quaternion.identity);
+        return Instantiate(_Bullet, _Pos, Quaternion.identity);
     }
 }
