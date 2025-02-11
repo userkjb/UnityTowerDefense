@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1833f24e77bd004ea6a474ad65b48e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemySpawnTime: 1
+  EnemySpawnTime: 0.5
   SettingSpawnCount: 20
