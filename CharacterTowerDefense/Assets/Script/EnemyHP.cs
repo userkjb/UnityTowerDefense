@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static ObjectEnum;
 
 /// <summary>
 /// Enemy의 HP를 관리하는 Script
@@ -82,7 +83,7 @@ public class EnemyHP : MonoBehaviour
             Life = false;
             if(Enemy != null)
             {
-                Enemy.OnDie();
+                Enemy.OnDie(EDestroyType.Kill);
             }
         }
     }

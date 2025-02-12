@@ -17,4 +17,13 @@ public class ObjectEnum : MonoBehaviour
         SearchTarget,
         Attack,
     }
+
+    /// <summary>
+    /// ¾î¶»°Ô Á×À½?
+    /// </summary>
+    public enum EDestroyType
+    {
+        Kill,   // Å³.
+        Arrive, // µµÂø.
+    }
 }

@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using UnityEngine;
+using static ObjectEnum;
 
 public class Enemy : MonoBehaviour
 {
@@ -80,13 +81,13 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            //Destroy(gameObject);
-            OnDie();
+            // 다음 Waypoint가 없다. = 도착지점.
+            OnDie(EDestroyType.Arrive);
         }
     }
 
-    public void OnDie()
+    public void OnDie(EDestroyType _EDestroyType)
     {
-        ObjectManager.Instance.DestroyEnemy(this);
+        ObjectManager.Instance.DestroyEnemy(this, _EDestroyType);
     }
 }

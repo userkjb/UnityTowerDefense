@@ -14,6 +14,7 @@ public class ObjectManager : Singleton<ObjectManager>
     //private GameObject EnemySpawnerPrefab = null;
     //private GameObject EndPointPrefab = null;
     //private GameObject TowerPrefab = null;
+    private GameObject PlayerHp = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -46,6 +47,13 @@ public class ObjectManager : Singleton<ObjectManager>
         ResourcesManager.Instance.Load<GameObject>("Prefab/EndPoint", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/Tower", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/Bullet", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/PlayerStats", ResourceType.Prefab);
+    }
+
+    public void SpawnPlayerStats()
+    {
+        GameObject go = ResourcesManager.Instance.GetPrefab("PlayerStats");
+        PlayerHp = Instantiate(go);
     }
 
     public void SpawnEnemy(Vector3 _Pos)
@@ -66,8 +74,14 @@ public class ObjectManager : Singleton<ObjectManager>
         Enemys.Add(EnemObject);
     }
 
-    public void DestroyEnemy(Enemy _Enemy)
+    public void DestroyEnemy(Enemy _Enemy, EDestroyType _EDestroyType)
     {
+        // 도착지점에서 죽는 것이라면,
+        if(_EDestroyType == EDestroyType.Arrive)
+        {
+            PlayerHp.GetComponent<PlayerHP>().TakeDamage(1.0f);
+        }
+
         Enemys.Remove(_Enemy);
         Destroy(_Enemy.gameObject);
     }

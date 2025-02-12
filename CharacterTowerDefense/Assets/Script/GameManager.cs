@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
         ComponentIsAdd();
 
         CreatePoint();
+        SpawnPlayerStats();
     }
 
     // Update is called once per frame
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
         ObjectManager.Instance.SpawnWaypoint(WayPos);
 
         ObjectManager.Instance.SpawnEndPoint();
+    }
+
+    private void SpawnPlayerStats()
+    {
+        ObjectManager.Instance.SpawnPlayerStats();
     }
 
     private void EnemySpriteLoad()
