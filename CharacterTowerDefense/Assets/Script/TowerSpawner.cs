@@ -6,6 +6,8 @@ public class TowerSpawner : MonoBehaviour
     private Camera MainCamera = null;
     private Ray RayValue = new Ray();
     private RaycastHit hit;
+    [SerializeField]
+    private int SpawnTowerGold = 50;
 
     private void Awake()
     {
@@ -34,6 +36,18 @@ public class TowerSpawner : MonoBehaviour
 
                             if(TileTower.IsTower == false)
                             {
+                                GameObject PlayerStats = ObjectManager.Instance.GetPlayerStats();
+                                int CurGold = PlayerStats.GetComponent<PlayerGold>().GetPlayerGold();
+                                if (CurGold < SpawnTowerGold)
+                                {
+                                    Debug.Log("I'm running out of Gold.");
+                                    return;
+                                }
+                                else
+                                {
+                                    PlayerStats.GetComponent<PlayerGold>().SubtractPlayerGold(SpawnTowerGold);
+                                }
+
                                 ObjectManager.Instance.SpawnTower(hit.transform.position);
                                 TileTower.IsTower = true;
                             }

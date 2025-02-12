@@ -5,26 +5,46 @@ public class PlayerHPWidget : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PlayerHPText;
-    private GameObject goPlayerHP = null;
+    [SerializeField]
+    private TextMeshProUGUI PlayerGoldText;
+    private GameObject goPlayerStats = null;
 
     private void Start()
     {
-        goPlayerHP = ObjectManager.Instance.GetPlayerHP();
+        goPlayerStats = ObjectManager.Instance.GetPlayerStats();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(goPlayerHP == null)
+        // HP
         {
-            goPlayerHP = ObjectManager.Instance.GetPlayerHP();
+            if(goPlayerStats == null)
+            {
+                goPlayerStats = ObjectManager.Instance.GetPlayerStats();
+            }
+
+            if (goPlayerStats != null)
+            {
+                PlayerHP Playerhp = null;
+                Playerhp = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerHP>();
+                PlayerHPText.text = Playerhp.GetPlayerHP().ToString() + "/" + Playerhp.GetPlayerHPMax().ToString();
+            }
         }
 
-        if(goPlayerHP != null)
+        // Gold
         {
-            PlayerHP Playerhp = null;
-            Playerhp = ObjectManager.Instance.GetPlayerHP().GetComponent<PlayerHP>();
-            PlayerHPText.text = Playerhp.GetPlayerHP().ToString() + "/" + Playerhp.GetPlayerHPMax().ToString();
+            if (goPlayerStats == null)
+            {
+                goPlayerStats = ObjectManager.Instance.GetPlayerStats();
+            }
+
+            if(goPlayerStats != null)
+            {
+                PlayerGold PlayerGoldValue = null;
+                PlayerGoldValue = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
+                PlayerGoldText.text = PlayerGoldValue.GetPlayerGold().ToString();
+            }
         }
     }
 }

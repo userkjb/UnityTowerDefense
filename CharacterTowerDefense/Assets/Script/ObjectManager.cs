@@ -14,7 +14,7 @@ public class ObjectManager : Singleton<ObjectManager>
     //private GameObject EnemySpawnerPrefab = null;
     //private GameObject EndPointPrefab = null;
     //private GameObject TowerPrefab = null;
-    private GameObject PlayerHp = null;
+    private GameObject PlayerStats = null;
 
     private List<Enemy> Enemys = new List<Enemy>();
     public List<Enemy> GetEnemys()
@@ -53,7 +53,7 @@ public class ObjectManager : Singleton<ObjectManager>
     public void SpawnPlayerStats()
     {
         GameObject go = ResourcesManager.Instance.GetPrefab("PlayerStats");
-        PlayerHp = Instantiate(go);
+        PlayerStats = Instantiate(go);
     }
 
     public void SpawnEnemy(Vector3 _Pos)
@@ -74,23 +74,27 @@ public class ObjectManager : Singleton<ObjectManager>
         Enemys.Add(EnemObject);
     }
 
-    public void DestroyEnemy(Enemy _Enemy, EDestroyType _EDestroyType)
+    public void DestroyEnemy(Enemy _Enemy, EDestroyType _EDestroyType, int _Gold)
     {
         // 도착지점에서 죽는 것이라면,
         if(_EDestroyType == EDestroyType.Arrive)
         {
-            PlayerHp.GetComponent<PlayerHP>().TakeDamage(1.0f);
+            PlayerStats.GetComponent<PlayerHP>().TakeDamage(1.0f);
+        }
+        else if(_EDestroyType == EDestroyType.Kill)
+        {
+            PlayerStats.GetComponent<PlayerGold>().AddPlayerGold(_Gold);
         }
 
         Enemys.Remove(_Enemy);
         Destroy(_Enemy.gameObject);
     }
 
-    public GameObject GetPlayerHP()
+    public GameObject GetPlayerStats()
     {
-        if(PlayerHp != null)
+        if(PlayerStats != null)
         {
-            return PlayerHp;
+            return PlayerStats;
         }
         else
         {

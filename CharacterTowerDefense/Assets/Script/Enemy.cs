@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     private int CurrentIndex = 0;
     private int RotateSpeed = 10;
 
+    [SerializeField]
+    private int DropGold = 10;
+
     private void Awake()
     {
         gameObject.AddComponent<CircleCollider2D>();
@@ -82,12 +85,13 @@ public class Enemy : MonoBehaviour
         else
         {
             // 다음 Waypoint가 없다. = 도착지점.
+            DropGold = 0;
             OnDie(EDestroyType.Arrive);
         }
     }
 
     public void OnDie(EDestroyType _EDestroyType)
     {
-        ObjectManager.Instance.DestroyEnemy(this, _EDestroyType);
+        ObjectManager.Instance.DestroyEnemy(this, _EDestroyType, DropGold);
     }
 }
