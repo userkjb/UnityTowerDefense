@@ -86,6 +86,18 @@ public class ObjectManager : Singleton<ObjectManager>
         Destroy(_Enemy.gameObject);
     }
 
+    public GameObject GetPlayerHP()
+    {
+        if(PlayerHp != null)
+        {
+            return PlayerHp;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public void SpawnStartPoint()
     {
         GameObject StartPointPrefab = ResourcesManager.Instance.GetPrefab("StartPoint");

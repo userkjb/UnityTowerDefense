@@ -26,4 +26,9 @@ public class PlayerHP : MonoBehaviour
     {
         return CurrentHP;
     }
+
+    public float GetPlayerHPMax()
+    {
+        return MaxHP;
+    }
 }
