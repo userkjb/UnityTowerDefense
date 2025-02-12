@@ -1,12 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class PlayerHPWidget : MonoBehaviour
+public class PlayerWidget : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI PlayerHPText;
     [SerializeField]
     private TextMeshProUGUI PlayerGoldText;
+
     private GameObject goPlayerStats = null;
 
     private void Start()
@@ -19,7 +20,7 @@ public class PlayerHPWidget : MonoBehaviour
     {
         // HP
         {
-            if(goPlayerStats == null)
+            if (goPlayerStats == null)
             {
                 goPlayerStats = ObjectManager.Instance.GetPlayerStats();
             }
@@ -39,7 +40,7 @@ public class PlayerHPWidget : MonoBehaviour
                 goPlayerStats = ObjectManager.Instance.GetPlayerStats();
             }
 
-            if(goPlayerStats != null)
+            if (goPlayerStats != null)
             {
                 PlayerGold PlayerGoldValue = null;
                 PlayerGoldValue = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
