@@ -17,7 +17,6 @@ public class MainCanvas : MonoBehaviour
     {
         GameObject TowerPanel = UIManager.Instance.CreatePanel("TowerPanel");
 
-        GameObject go = gameObject;
-        TowerPanel.transform.SetParent(go.transform);
+        TowerPanel.transform.SetParent(gameObject.transform);
     }
 }

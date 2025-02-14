@@ -9,4 +9,9 @@ public class UIImage : MonoBehaviour
         gameObject.AddComponent<CanvasRenderer>();
         gameObject.AddComponent<Image>();
     }
+
+    public void SetImageTransform()
+    {
+
+    }
 }

@@ -27,15 +27,30 @@ public class UIManager : Singleton<UIManager>
         {
             ResourcesManager.Instance.Load<GameObject>("Prefab/TowerPanel", ResourceType.UI);
         }
-        if(!ResourcesManager.Instance.IsResource("UIImage"))
+        
+        GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
+        GameObject go = Instantiate(Prefab);
+        TowerUI.Add(_Name, go);
+        return go;
+    }
+
+    public GameObject CreateUIImage(string _Name)
+    {
+        if (!ResourcesManager.Instance.IsResource("UIImage"))
         {
             ResourcesManager.Instance.Load<GameObject>("Prefab/UIImage", ResourceType.UI);
         }
 
-
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
         GameObject go = Instantiate(Prefab);
         TowerUI.Add(_Name, go);
+        return go;
+    }
+
+    public GameObject CreateUIText(string _Name)
+    {
+        GameObject go = null;
+
         return go;
     }
 }
