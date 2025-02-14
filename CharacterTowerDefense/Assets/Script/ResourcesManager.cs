@@ -37,7 +37,8 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Object ob = Resources.Load<T>(_path);
                     GameObject go = ob as GameObject;
                     name = name.Substring(7);
-                    AllPrefab.Add(name, go);
+                    if(!IsPrefab(name))
+                        AllPrefab.Add(name, go);
                     break;
                 }
             case ResourceType.Enemy:
@@ -46,7 +47,8 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Object ob = Resources.Load<T>(_path);
                     Sprite sprite = ob as Sprite;
                     name = name.Substring(name.Length - 7);
-                    AllResources.Add(name, sprite);
+                    if(!IsResource(name))
+                        AllResources.Add(name, sprite);
                     break;
                 }
             case ResourceType.Tower:
@@ -55,7 +57,8 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Object ob = Resources.Load<T>(_path);
                     Sprite sprite = ob as Sprite;
                     name = name.Substring(name.Length - 12);
-                    AllResources.Add(name, sprite);
+                    if (!IsResource(name))
+                        AllResources.Add(name, sprite);
                     break;
                 }
             case ResourceType.Bullet:
@@ -64,18 +67,18 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Object ob = Resources.Load<T>(_path);
                     Sprite sprite = ob as Sprite;
                     name = name.Substring(8);
-                    AllResources.Add(name, sprite);
+                    if (!IsResource(name))
+                        AllResources.Add(name, sprite);
                     break;
                 }
             case ResourceType.UI:
                 {
+                    //Prefab/TowerPanel
                     Object ob = Resources.Load<T>(_path);
-                    Sprite sprite = ob as Sprite;
-                    name = name.Substring(1);
-                    if(name == "UI")
-                    {
-                        AllResources.Add(name, sprite);
-                    }
+                    GameObject go = ob as GameObject;
+                    name = name.Substring(7);
+                    if (!IsPrefab(name))
+                        AllPrefab.Add(name, go);
                     break;
                 }
             default:
@@ -91,5 +94,29 @@ public class ResourcesManager : Singleton<ResourcesManager>
     public GameObject GetPrefab(string _PrefabName)
     {
         return AllPrefab[_PrefabName];
+    }
+
+    public bool IsPrefab(string _PrefabName)
+    {
+        if (AllPrefab.ContainsKey(_PrefabName))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool IsResource(string _ResourcesName)
+    {
+        if(AllResources.ContainsKey(_ResourcesName))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
