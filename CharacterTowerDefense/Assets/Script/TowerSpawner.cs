@@ -52,6 +52,10 @@ public class TowerSpawner : MonoBehaviour
                                 TileTower.IsTower = true;
                             }
                         }
+                        else if(hit.transform.CompareTag("Tower"))
+                        {
+
+                        }
                     }
                     break;
                 }
