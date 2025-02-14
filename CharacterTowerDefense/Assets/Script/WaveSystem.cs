@@ -10,6 +10,11 @@ public class WaveSystem : MonoBehaviour
     [SerializeField]
     private float EnemySpawnTime = 0.0f; // 적 생성 시간
 
+    public int GetWaveValue()
+    {
+        return CurrentWaveIndex;
+    }
+
     private void Update()
     {
         

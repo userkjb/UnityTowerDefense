@@ -32,7 +32,15 @@ public class ObjectManager : Singleton<ObjectManager>
     {
         return Enemys;
     }
-    private int EnemyCount = 0;
+    private int EnemySpawnCount = 0;
+    public int GetEnemySpawnCount()
+    {
+        return EnemySpawnCount;
+    }
+    public void SetEnemySpawnCount(int _Value)
+    {
+        EnemySpawnCount = _Value;
+    }
 
     /// <summary>
     /// WayPoint º¸°ü.
@@ -76,11 +84,11 @@ public class ObjectManager : Singleton<ObjectManager>
             return;
         }
 
+        EnemySpawnCount++;
         GameObject go = Instantiate(EnemyPrefab, _Pos, Quaternion.Euler(0, 0, 0));
         Enemy EnemObject = go.GetComponent<Enemy>();
-        EnemObject.name = $"Enemy_{EnemyCount}";
+        EnemObject.name = $"Enemy_{EnemySpawnCount}";
         EnemObject.EnemySetting(_WaveCount);
-        EnemyCount++;
 
         Enemys.Add(EnemObject);
     }

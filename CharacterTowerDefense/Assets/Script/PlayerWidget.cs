@@ -7,6 +7,8 @@ public class PlayerWidget : MonoBehaviour
     private TextMeshProUGUI PlayerHPText;
     [SerializeField]
     private TextMeshProUGUI PlayerGoldText;
+    [SerializeField]
+    private TextMeshProUGUI PlayerWaveText;
 
     private GameObject goPlayerStats = null;
 
@@ -45,6 +47,16 @@ public class PlayerWidget : MonoBehaviour
                 PlayerGold PlayerGoldValue = null;
                 PlayerGoldValue = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
                 PlayerGoldText.text = PlayerGoldValue.GetPlayerGold().ToString();
+            }
+        }
+
+        // Wave
+        {
+            if(PlayerWaveText != null)
+            {
+                GameObject go = ObjectManager.Instance.GetEnemySpawner();
+                int OutputText = go.GetComponent<WaveSystem>().GetWaveValue();
+                PlayerWaveText.text = OutputText.ToString();
             }
         }
     }

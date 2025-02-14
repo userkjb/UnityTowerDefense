@@ -20,12 +20,17 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy()
     {
-        CurrentEnemyCount = ObjectManager.Instance.GetEnemys().Count;
+        CurrentEnemyCount = ObjectManager.Instance.GetEnemySpawnCount();
 
-        while (CurrentEnemyCount < SpawnEnemyCount)
+        while (true)
         {
             ObjectManager.Instance.SpawnEnemy(this.transform.position, WaveCount);
-            CurrentEnemyCount = ObjectManager.Instance.GetEnemys().Count;
+
+            if(ObjectManager.Instance.GetEnemySpawnCount() == SpawnEnemyCount)
+            {
+                ObjectManager.Instance.SetEnemySpawnCount(0);
+                break;
+            }
 
             yield return new WaitForSeconds(SpawnTime);
         }
