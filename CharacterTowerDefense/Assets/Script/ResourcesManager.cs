@@ -67,6 +67,17 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     AllResources.Add(name, sprite);
                     break;
                 }
+            case ResourceType.UI:
+                {
+                    Object ob = Resources.Load<T>(_path);
+                    Sprite sprite = ob as Sprite;
+                    name = name.Substring(1);
+                    if(name == "UI")
+                    {
+                        AllResources.Add(name, sprite);
+                    }
+                    break;
+                }
             default:
                 break;
         }

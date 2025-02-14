@@ -9,6 +9,7 @@ public class ObjectEnum : MonoBehaviour
         Enemy,
         Tower,
         Bullet,
+        UI,
     }
 
     public enum ETowerState
