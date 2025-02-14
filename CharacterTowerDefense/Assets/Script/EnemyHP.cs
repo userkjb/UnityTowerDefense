@@ -17,6 +17,43 @@ public class EnemyHP : MonoBehaviour
     // 현재 실행중인 코루틴
     private Coroutine CurrentCoroutine = null;
     
+    public void SetEnemyHP(int _WaveValue)
+    {
+        switch(_WaveValue)
+        {
+            case 1:
+                {
+                    MaxHP = 5;
+                    break;
+                }
+            case 2:
+                {
+                    MaxHP = 10;
+                    break;
+                }
+            case 3:
+                {
+                    MaxHP = 10;
+                    break;
+                }
+            case 4:
+                {
+                    MaxHP = 20;
+                    break;
+                }
+            case 5:
+                {
+                    MaxHP = 100;
+                    break;
+                }
+            default:
+                CurrentHP = MaxHP;
+                break;
+
+        }
+        CurrentHP = MaxHP;
+    }
+
 
     private void Awake()
     {

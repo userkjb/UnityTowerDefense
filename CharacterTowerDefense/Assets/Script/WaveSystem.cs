@@ -24,6 +24,10 @@ public class WaveSystem : MonoBehaviour
         if (EnemyCount == 0)
         {
             CurrentWaveIndex++;
+            if(CurrentWaveIndex == 6)
+            {
+                return;
+            }
 
             EnemySpawner Enemy_Spawner = gameObject.GetComponent<EnemySpawner>();
             if(Enemy_Spawner != null)

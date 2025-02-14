@@ -6,6 +6,7 @@ using static ObjectEnum;
 public class Enemy : MonoBehaviour
 {
     private Movement2D movement2D = null;
+    private EnemyHP EnemyHp = null;
     private int WaypointCount = 0;
     private int CurrentIndex = 0;
     private int RotateSpeed = 10;
@@ -20,7 +21,12 @@ public class Enemy : MonoBehaviour
     }
 
     void Start()
-    {        
+    {
+        if(EnemyHp == null)
+        {
+            EnemyHp = GetComponent<EnemyHP>();
+        }
+
         // Component Setting
         // Transform
         gameObject.GetComponent<Transform>().localScale = new Vector3(0.5f, 0.5f, 0.5f);
@@ -40,13 +46,23 @@ public class Enemy : MonoBehaviour
     public void EnemySetting(int _WaveCount)
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite($"Enemy0{_WaveCount}");
+        if(EnemyHp == null)
+        {
+            EnemyHp = GetComponent<EnemyHP>();
+            EnemyHp.SetEnemyHP(_WaveCount);
+        }
+        else
+        {
+            EnemyHp.SetEnemyHP(_WaveCount);
+        }
 
-        movement2D = GetComponent<Movement2D>();
+            movement2D = GetComponent<Movement2D>();
         if (movement2D == null)
         {
             Debug.LogError("Movement2D Is Null");
             return;
         }
+        SettingMoveSpeedGold(_WaveCount);
 
         WaypointCount = ObjectManager.Instance.GetWayPoints().Count;
 
@@ -54,6 +70,53 @@ public class Enemy : MonoBehaviour
         this.transform.position = ObjectManager.Instance.GetWayPoints()[CurrentIndex].transform.position;
 
         StartCoroutine("OnMove");
+    }
+
+    private void SettingMoveSpeedGold(int _WaveCount)
+    {
+        if(movement2D == null)
+        {
+            Debug.LogError("Enemy Is Not Movement2D Component");
+            return;
+        }
+        float Speed = 0.0f;
+        switch (_WaveCount)
+        {
+            case 1:
+                {
+                    Speed = 1.0f;
+                    DropGold = 10;
+                    break;
+                }
+            case 2:
+                {
+                    Speed = 1.5f;
+                    DropGold = 15;
+                    break;
+                }
+            case 3:
+                {
+                    Speed = 2.0f;
+                    DropGold = 50;
+                    break;
+                }
+            case 4:
+                {
+                    Speed = 3.0f;
+                    DropGold = 20;
+                    break;
+                }
+            case 5:
+                {
+                    Speed = 1.5f;
+                    DropGold = 50;
+                    break;
+                }
+            default:
+                break;
+
+        }
+        movement2D.SetMoveSpeed(Speed);
     }
 
     private IEnumerator OnMove()
