@@ -1,38 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private float CalTime = 0.0f;
+    private float SpawnTime = -1.0f;
+    private int SpawnEnemyCount = -1;
+    private int CurrentEnemyCount = 0;
+    private int WaveCount = 0;
 
-    [SerializeField]
-    private float EnemySpawnTime = 0.0f; // 적 생성 시간
-
-    private int SpawnCount = 0;
-    [SerializeField]
-    private int SettingSpawnCount = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SettingEnemySpawn(int _SpawnEnemyCount, int _WaveCount, float _SpawnTime)
     {
+        this.SpawnTime = _SpawnTime;
+        this.SpawnEnemyCount = _SpawnEnemyCount;
+        this.WaveCount = _WaveCount;
 
+        StartCoroutine("SpawnEnemy");
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator SpawnEnemy()
     {
-        if(SettingSpawnCount == SpawnCount)
+        CurrentEnemyCount = ObjectManager.Instance.GetEnemys().Count;
+
+        while (CurrentEnemyCount < SpawnEnemyCount)
         {
-            return;
-        }
+            ObjectManager.Instance.SpawnEnemy(this.transform.position, WaveCount);
+            CurrentEnemyCount = ObjectManager.Instance.GetEnemys().Count;
 
-        CalTime += Time.deltaTime;
-
-        if (CalTime >= EnemySpawnTime)
-        {
-            CalTime = 0.0f;
-
-            ObjectManager.Instance.SpawnEnemy(this.transform.position);
-            SpawnCount++;
+            yield return new WaitForSeconds(SpawnTime);
         }
     }
 }

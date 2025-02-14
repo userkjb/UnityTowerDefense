@@ -11,7 +11,18 @@ public class ObjectManager : Singleton<ObjectManager>
     //private GameObject EnemyPrefab = null;
     //private GameObject StartPointPrefab = null;
     //private GameObject WayPointPrefab = null;
-    //private GameObject EnemySpawnerPrefab = null;
+    private GameObject EnemySpawner = null;
+    public GameObject GetEnemySpawner()
+    {
+        if(EnemySpawner != null)
+        {
+            return EnemySpawner;
+        }
+        else
+        {
+            return null;
+        }
+    }
     //private GameObject EndPointPrefab = null;
     //private GameObject TowerPrefab = null;
     private GameObject PlayerStats = null;
@@ -56,7 +67,7 @@ public class ObjectManager : Singleton<ObjectManager>
         PlayerStats = Instantiate(go);
     }
 
-    public void SpawnEnemy(Vector3 _Pos)
+    public void SpawnEnemy(Vector3 _Pos, int _WaveCount)
     {
         GameObject EnemyPrefab = ResourcesManager.Instance.GetPrefab("Enemy");
         if (EnemyPrefab == null)
@@ -68,7 +79,7 @@ public class ObjectManager : Singleton<ObjectManager>
         GameObject go = Instantiate(EnemyPrefab, _Pos, Quaternion.Euler(0, 0, 0));
         Enemy EnemObject = go.GetComponent<Enemy>();
         EnemObject.name = $"Enemy_{EnemyCount}";
-        EnemObject.EnemySetting();
+        EnemObject.EnemySetting(_WaveCount);
         EnemyCount++;
 
         Enemys.Add(EnemObject);
@@ -150,7 +161,7 @@ public class ObjectManager : Singleton<ObjectManager>
             Debug.LogError("Enemy Spawner Prefab Is Null");
             return;
         }
-        Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.identity);
+        EnemySpawner = Instantiate(EnemySpawnerPrefab, EnemySpawnerPrefab.transform.position, Quaternion.identity);
     }
 
     public void SpawnEndPoint()

@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
         // Sprite Renderer
         //gameObject.GetComponent<SpriteRenderer>().sprite = EnemySprites[0];
-        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Enemy01");
+        //gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Enemy01");
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
     }
 
@@ -37,8 +37,10 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void EnemySetting()
+    public void EnemySetting(int _WaveCount)
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite($"Enemy0{_WaveCount}");
+
         movement2D = GetComponent<Movement2D>();
         if (movement2D == null)
         {
