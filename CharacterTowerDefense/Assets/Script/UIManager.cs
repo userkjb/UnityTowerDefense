@@ -59,6 +59,7 @@ public class UIManager : Singleton<UIManager>
         }
 
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
+        Prefab.name = $"{_Name}{_Count}";
         GameObject go = Instantiate(Prefab);
         TowerUI.Add($"{_Name}{_Count}", go);
         return go;
