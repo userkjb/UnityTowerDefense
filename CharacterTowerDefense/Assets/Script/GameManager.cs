@@ -38,13 +38,15 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private void ComponentIsAdd()
     {
+        //{
+        //    GameObject go = new GameObject();
+        //    go.name = "Coordinates";
+        //    go.AddComponent<Coordinates>();
+        //    Coordinate = go.GetComponent<Coordinates>();
+        //}
         {
-            GameObject go = new GameObject();
-            go.name = "Coordinates";
-            go.AddComponent<Coordinates>();
-            Coordinate = go.GetComponent<Coordinates>();
+            Coordinate = Coordinates.Instance;
         }
-
     }
 
     private void CreatePoint()
