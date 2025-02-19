@@ -58,10 +58,23 @@ public class UIManager : Singleton<UIManager>
             ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.UI);
         }
 
+        // 중복 체크
+        if (IsTowerUI($"{_Name}{_Count}"))
+        {
+            Debug.LogError("Duplication");
+            return null;
+        }
+
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
         Prefab.name = $"{_Name}{_Count}";
         GameObject go = Instantiate(Prefab);
         TowerUI.Add($"{_Name}{_Count}", go);
         return go;
+    }
+
+    public bool IsTowerUI(string _Name)
+    {
+        bool Is = TowerUI.ContainsKey(_Name);
+        return Is;
     }
 }
