@@ -23,12 +23,16 @@ public class TowerPanel : MonoBehaviour
         Transform.localScale = new Vector3(2.56f, 1.0f, 1.0f);
 
         CreateTowerImageView();
+        CreateTowerDataViews();
     }
 
     private void CreateTowerImageView()
     {
         GameObject TowerImage = UIManager.Instance.CreateUIImage("UIImage");
         TowerImage.transform.SetParent(gameObject.transform);
+        
+        UIImage img = TowerImage.GetComponent<UIImage>();
+        img.SetImageTransform();
     }
 
     private void CreateTowerDataViews()
@@ -36,7 +40,16 @@ public class TowerPanel : MonoBehaviour
         //TowerDataViews
         for (int i = 0; i < 4; i++)
         {
-            //GameObject TowerData = 
+            GameObject TowerData = UIManager.Instance.CreateUIText("UIText", i);
+            TowerData.transform.SetParent(gameObject.transform);
+            TowerDataViews.Add(TowerData);
+        }
+
+        int Index = 0;
+        foreach(GameObject _go in TowerDataViews)
+        {
+            _go.GetComponent<UIText>().SetUIPosition(Index);
+            Index++;
         }
     }
 }
