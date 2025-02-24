@@ -51,6 +51,9 @@ public class ObjectManager : Singleton<ObjectManager>
         return WayPoints;
     }
 
+    /// <summary>
+    /// Tower º¸°ü.
+    /// </summary>
     private List<Tower> Towers = new List<Tower>();
     public List<Tower> GetTowers()
     {
