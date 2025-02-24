@@ -5,9 +5,9 @@ using static ObjectEnum;
 
 public class UIText : MonoBehaviour
 {
-    RectTransform Rec = null;
-    TextMeshProUGUI TextView = null;
-    ETextType TextType = ETextType.None;
+    private RectTransform Rec = null;
+    private TextMeshProUGUI TextView = null;
+    private ETextType TextType = ETextType.None;
 
     private void Awake()
     {
@@ -55,14 +55,8 @@ public class UIText : MonoBehaviour
         }
     }
 
-
-    public void SetUIPosition(Vector3 _Position)
+    public void UpdateUIText(string _ValueText)
     {
-        Rec.anchoredPosition3D = _Position;
-    }
-
-    public void SetUIText(string _Text)
-    {
-        TextView.text = _Text;
+        TextView.text = _ValueText;
     }
 }

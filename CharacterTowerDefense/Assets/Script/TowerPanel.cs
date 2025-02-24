@@ -41,7 +41,7 @@ public class TowerPanel : MonoBehaviour
         //TowerDataViews
         for (int i = 0; i < 4; i++)
         {
-            GameObject TowerData = UIManager.Instance.CreateUIText("UIText", i);
+            GameObject TowerData = UIManager.Instance.CreateTowerUIText("UIText", i);
             TowerData.transform.SetParent(gameObject.transform);
             TowerData.GetComponent<UIText>().SettingUIData(i);
             TowerDataViews.Add(TowerData);
@@ -52,8 +52,11 @@ public class TowerPanel : MonoBehaviour
     {
         {
             Vector3 Pos = new Vector3(-38.0f, -26.0f, 0.0f);
+            Vector2 Size = new Vector2(0.0f, 0.0f);
             GameObject TowerButton = UIManager.Instance.CreateButton("Upgrade");
             TowerButton.transform.SetParent(gameObject.transform);
+            TowerButton.GetComponent<UIButton>().SetButtonPos(Pos);
+            //TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
         }
 
         {

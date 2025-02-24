@@ -58,7 +58,7 @@ public class UIManager : Singleton<UIManager>
         return go;
     }
 
-    public GameObject CreateUIText(string _Name, int _Count)
+    public GameObject CreateTowerUIText(string _Name, int _Count)
     {
         if (!ResourcesManager.Instance.IsPrefab("UIText"))
         {
@@ -78,27 +78,39 @@ public class UIManager : Singleton<UIManager>
         TowerUI.Add($"{_Name}{_Count}", go);
         return go;
     }
-    
 
-    public GameObject CreateButton(string _Name)
+
+    public GameObject CreateButton(string _Btn_Name)
     {
         if (!ResourcesManager.Instance.IsPrefab("UIButton"))
         {
             ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.UI);
         }
+        if (!ResourcesManager.Instance.IsPrefab("UIText"))
+        {
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.UI);
+        }
 
-        if(IsTowerUI("UIButton"))
+        // TODO Upgrage or Sell
+        if (IsTowerUI($"{_Btn_Name}"))
         {
             Debug.LogError("Overlapping Button UI");
             return null;
         }
 
         GameObject Prefab = ResourcesManager.Instance.GetPrefab("UIButton");
-        Prefab.name = $"{_Name}";
-        GameObject go = Instantiate(Prefab);
-        TowerUI.Add(_Name, go);
+        Prefab.name = $"{_Btn_Name}";
 
-        return go;
+        GameObject TextPrefab = ResourcesManager.Instance.GetPrefab("UIText");
+        TextPrefab.name = "Text";
+        
+        GameObject go_Text = Instantiate(TextPrefab);
+        GameObject go_Btn = Instantiate(Prefab);
+
+        go_Btn.GetComponent<UIButton>().SetBtnInTextUI(go_Text.GetComponent<UIText>());
+        
+        TowerUI.Add(_Btn_Name, go_Btn);
+        return go_Btn;
     }
 
     public bool IsTowerUI(string _Name)
