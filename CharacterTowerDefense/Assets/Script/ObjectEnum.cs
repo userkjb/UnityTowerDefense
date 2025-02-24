@@ -27,4 +27,13 @@ public class ObjectEnum : MonoBehaviour
         Kill,   // Å³.
         Arrive, // µµÂø.
     }
+
+    public enum ETextType
+    {
+        None,
+        Damage,
+        Rate,
+        Range,
+        Level,
+    }
 }

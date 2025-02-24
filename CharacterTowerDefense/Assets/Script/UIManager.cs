@@ -27,11 +27,11 @@ public class UIManager : Singleton<UIManager>
 
     public GameObject CreatePanel(string _Name)
     {
-        if(!ResourcesManager.Instance.IsPrefab("TowerPanel"))
+        if(!ResourcesManager.Instance.IsPrefab($"{_Name}"))
         {
-            ResourcesManager.Instance.Load<GameObject>("Prefab/TowerPanel", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>($"Prefab/{_Name}", ResourceType.UI);
         }
-        
+
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
         GameObject go = Instantiate(Prefab);
         TowerUI.Add(_Name, go);
@@ -43,6 +43,13 @@ public class UIManager : Singleton<UIManager>
         if (!ResourcesManager.Instance.IsPrefab("UIImage"))
         {
             ResourcesManager.Instance.Load<GameObject>("Prefab/UIImage", ResourceType.UI);
+        }
+
+        // 중복 체크
+        if (IsTowerUI(_Name))
+        {
+            Debug.LogError("Overlapping Image UI");
+            return null;
         }
 
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
@@ -61,7 +68,7 @@ public class UIManager : Singleton<UIManager>
         // 중복 체크
         if (IsTowerUI($"{_Name}{_Count}"))
         {
-            Debug.LogError("Duplication");
+            Debug.LogError("Overlapping Test UI");
             return null;
         }
 
@@ -69,6 +76,28 @@ public class UIManager : Singleton<UIManager>
         Prefab.name = $"{_Name}{_Count}";
         GameObject go = Instantiate(Prefab);
         TowerUI.Add($"{_Name}{_Count}", go);
+        return go;
+    }
+    
+
+    public GameObject CreateButton(string _Name)
+    {
+        if (!ResourcesManager.Instance.IsPrefab("UIButton"))
+        {
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.UI);
+        }
+
+        if(IsTowerUI("UIButton"))
+        {
+            Debug.LogError("Overlapping Button UI");
+            return null;
+        }
+
+        GameObject Prefab = ResourcesManager.Instance.GetPrefab("UIButton");
+        Prefab.name = $"{_Name}";
+        GameObject go = Instantiate(Prefab);
+        TowerUI.Add(_Name, go);
+
         return go;
     }
 

@@ -73,6 +73,8 @@ public class ObjectManager : Singleton<ObjectManager>
 
         ResourcesManager.Instance.Load<GameObject>("Prefab/TowerPanel", ResourceType.UI);
         ResourcesManager.Instance.Load<GameObject>("Prefab/UIImage", ResourceType.UI);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.UI);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.UI);
     }
 
     public void SpawnPlayerStats()

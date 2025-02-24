@@ -24,6 +24,7 @@ public class TowerPanel : MonoBehaviour
 
         CreateTowerImageView();
         CreateTowerDataViews();
+        CreateTowerButton();
     }
 
     private void CreateTowerImageView()
@@ -42,14 +43,23 @@ public class TowerPanel : MonoBehaviour
         {
             GameObject TowerData = UIManager.Instance.CreateUIText("UIText", i);
             TowerData.transform.SetParent(gameObject.transform);
+            TowerData.GetComponent<UIText>().SettingUIData(i);
             TowerDataViews.Add(TowerData);
         }
+    }
 
-        int Index = 0;
-        foreach(GameObject _go in TowerDataViews)
+    public void CreateTowerButton()
+    {
         {
-            _go.GetComponent<UIText>().SetUIPosition(Index);
-            Index++;
+            Vector3 Pos = new Vector3(-38.0f, -26.0f, 0.0f);
+            GameObject TowerButton = UIManager.Instance.CreateButton("Upgrade");
+            TowerButton.transform.SetParent(gameObject.transform);
+        }
+
+        {
+            //Vector3 Pos = new Vector3();
+            //GameObject TowerButton = UIManager.Instance.CreateButton("Sell", Pos);
+            //TowerButton.transform.SetParent(gameObject.transform);
         }
     }
 }
