@@ -10,6 +10,8 @@ public class TowerPanel : MonoBehaviour
     private void Awake()
     {
         GetComponent<RectTransform>().position = Vector3.zero;
+
+        OffTowerData();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -52,17 +54,38 @@ public class TowerPanel : MonoBehaviour
     {
         {
             Vector3 Pos = new Vector3(-38.0f, -26.0f, 0.0f);
-            Vector2 Size = new Vector2(0.0f, 0.0f);
+            Vector2 Size = new Vector2(50.0f, 20.0f);
             GameObject TowerButton = UIManager.Instance.CreateButton("Upgrade");
             TowerButton.transform.SetParent(gameObject.transform);
             TowerButton.GetComponent<UIButton>().SetButtonPos(Pos);
-            //TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
+            TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
+            TowerButton.GetComponent<UIButton>().SetBtnText("Upgrade");
         }
 
         {
-            //Vector3 Pos = new Vector3();
-            //GameObject TowerButton = UIManager.Instance.CreateButton("Sell", Pos);
-            //TowerButton.transform.SetParent(gameObject.transform);
+            Vector3 Pos = new Vector3(-16.0f, -26.0f, 0.0f);
+            Vector2 Size = new Vector2(50.0f, 20.0f);
+            GameObject TowerButton = UIManager.Instance.CreateButton("Sell");
+            TowerButton.transform.SetParent(gameObject.transform);
+            TowerButton.GetComponent<UIButton>().SetButtonPos(Pos);
+            TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
+            TowerButton.GetComponent<UIButton>().SetBtnText("Sell");
         }
+    }
+
+    public void OnTowerData()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void OffTowerData()
+    {
+        gameObject.SetActive(false);
+        bool x = gameObject.activeSelf;
+    }
+
+    public bool GetActive()
+    {
+        return gameObject.activeSelf;
     }
 }

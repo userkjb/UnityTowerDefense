@@ -24,6 +24,7 @@ public class UIButton : MonoBehaviour
     public void SetButtonSize(Vector2 _Size)
     {
         Rec.sizeDelta = _Size;
+        BtnInText.SetUITextSize(_Size);
     }
 
     public void SetBtnInTextUI(UIText _Text)
@@ -34,5 +35,16 @@ public class UIButton : MonoBehaviour
         }
 
         BtnInText.GetComponent<RectTransform>().SetParent(gameObject.transform);
+    }
+
+    public void SetBtnText(string _Data)
+    {
+        if(BtnInText == null)
+        {
+            Debug.LogError("In Btn Text is Null");
+            return;
+        }
+
+        BtnInText.BtnText(_Data);
     }
 }

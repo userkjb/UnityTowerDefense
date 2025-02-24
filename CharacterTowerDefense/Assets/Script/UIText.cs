@@ -59,4 +59,18 @@ public class UIText : MonoBehaviour
     {
         TextView.text = _ValueText;
     }
+
+    public void SetUITextSize(Vector2 _Size)
+    {
+        Rec.sizeDelta = _Size;
+    }
+
+    public void BtnText(string _ValueText)
+    {
+        TextView.text = _ValueText;
+        TextView.fontStyle = FontStyles.Bold;
+        TextView.fontSize = 10.0f;
+        TextView.color = Color.black;
+        TextView.alignment = TextAlignmentOptions.Center;
+    }
 }
