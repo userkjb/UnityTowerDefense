@@ -7,7 +7,7 @@ public class Tower : MonoBehaviour
     private ETowerState TowerStatus = ETowerState.None;
     private GameObject goBullet;
     [SerializeField]
-    private Transform BulletSpawnPosition; // 총알 발사 위치.(자식 데이터를 가져오는 방법을 모름)
+    private Transform BulletSpawnPosition; // 총알 발사 위치.
     private Transform AttackTarget = null;
     [SerializeField]
     private float AttackSpeed = 0.5f; // 발사 딜레이
@@ -143,6 +143,9 @@ public class Tower : MonoBehaviour
             Debug.Log("Attack Target Is Null");
         }
 
+
+        //Transform ChildTransform = transform.GetChild(0);
+        //GameObject CreateBullet = ObjectManager.Instance.SpawnBullet(goBullet, ChildTransform.position);
         GameObject CreateBullet = ObjectManager.Instance.SpawnBullet(goBullet, this.BulletSpawnPosition.position);
         CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget, AttackDamage);
     }
