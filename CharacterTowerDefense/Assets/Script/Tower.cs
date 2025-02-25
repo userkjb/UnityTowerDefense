@@ -16,12 +16,15 @@ public class Tower : MonoBehaviour
     private float AttackTime = 0.0f;
     private int TowerDamage = 1;
 
+    private void Awake()
+    {
+        gameObject.AddComponent<SpriteRenderer>();
+        gameObject.AddComponent<BoxCollider>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gameObject.AddComponent<SpriteRenderer>();
-        
         gameObject.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
         gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
