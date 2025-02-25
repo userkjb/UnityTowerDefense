@@ -32,6 +32,7 @@ public class TowerSpawner : MonoBehaviour
                     {
                         if (hit.transform.CompareTag("Tile"))
                         {
+                            Debug.Log("Is Tile");
                             TileWall TileTower = hit.transform.GetComponent<TileWall>();
 
                             if(TileTower.IsTower == false)
@@ -48,14 +49,40 @@ public class TowerSpawner : MonoBehaviour
                                     PlayerStats.GetComponent<PlayerGold>().SubtractPlayerGold(SpawnTowerGold);
                                 }
 
-                                ObjectManager.Instance.SpawnTower(hit.transform.position);
+                                Vector3 TowerPos = hit.transform.position;
+                                TowerPos += Vector3.back;
+                                ObjectManager.Instance.SpawnTower(TowerPos);
                                 TileTower.IsTower = true;
                             }
                         }
                         else if(hit.transform.CompareTag("Tower"))
                         {
+                            Debug.Log("Is Tower");
+                            Canvas MainCanvas = UIManager.Instance.GetCanvas();
+                            if(null == MainCanvas)
+                            {
+                                Debug.LogError("MainCanvas Is Null");
+                                return;
+                            }
 
+                            TowerPanel TowerPan = MainCanvas.transform.GetChild(2).GetComponent<TowerPanel>();
+                            TowerPan.OnTowerData();
                         }
+                        else
+                        {
+                            Debug.Log("What Is this???");
+                        }
+                    }
+                    else
+                    {
+                        // ºó °ø°£.
+                        GameObject go = UIManager.Instance.GetTowerUI("TowerPanel");
+                        TowerPanel TowerPanel = go.GetComponent<TowerPanel>();
+                        if (false == TowerPanel.GetActive())
+                        {
+                            return;
+                        }
+                        TowerPanel.OffTowerData();
                     }
                     break;
                 }

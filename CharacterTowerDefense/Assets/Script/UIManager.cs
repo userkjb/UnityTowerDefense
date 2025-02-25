@@ -20,9 +20,16 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public GameObject GetCanvas()
+    public Canvas GetCanvas()
     {
-        return MainCanvas;
+        if(null == MainCanvas)
+        {
+            return null;
+        }
+        else
+        {
+            return MainCanvas.GetComponent<Canvas>();
+        }
     }
 
     public GameObject CreatePanel(string _Name)
