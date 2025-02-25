@@ -32,7 +32,6 @@ public class TowerSpawner : MonoBehaviour
                     {
                         if (hit.transform.CompareTag("Tile"))
                         {
-                            Debug.Log("Is Tile");
                             TileWall TileTower = hit.transform.GetComponent<TileWall>();
 
                             if(TileTower.IsTower == false)
@@ -57,16 +56,22 @@ public class TowerSpawner : MonoBehaviour
                         }
                         else if(hit.transform.CompareTag("Tower"))
                         {
-                            Debug.Log("Is Tower");
+                            Transform HitTower = hit.transform;
+                            if(null == HitTower)
+                            {
+                                Debug.LogError("Hit Object Tower Is null");
+                                return;
+                            }
+
                             Canvas MainCanvas = UIManager.Instance.GetCanvas();
                             if(null == MainCanvas)
                             {
                                 Debug.LogError("MainCanvas Is Null");
                                 return;
                             }
-
+                            // 이 코드는 조금 위험.
                             TowerPanel TowerPan = MainCanvas.transform.GetChild(2).GetComponent<TowerPanel>();
-                            TowerPan.OnTowerData();
+                            TowerPan.OnTowerData(HitTower);
                         }
                         else
                         {
@@ -78,7 +83,7 @@ public class TowerSpawner : MonoBehaviour
                         // 빈 공간.
                         GameObject go = UIManager.Instance.GetTowerUI("TowerPanel");
                         TowerPanel TowerPanel = go.GetComponent<TowerPanel>();
-                        if (false == TowerPanel.GetActive())
+                        if (false == TowerPanel.IsActive())
                         {
                             return;
                         }

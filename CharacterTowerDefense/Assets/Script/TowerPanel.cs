@@ -10,8 +10,6 @@ public class TowerPanel : MonoBehaviour
     private void Awake()
     {
         GetComponent<RectTransform>().position = Vector3.zero;
-
-        OffTowerData();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +25,8 @@ public class TowerPanel : MonoBehaviour
         CreateTowerImageView();
         CreateTowerDataViews();
         CreateTowerButton();
+
+        OffTowerData();
     }
 
     private void CreateTowerImageView()
@@ -73,9 +73,16 @@ public class TowerPanel : MonoBehaviour
         }
     }
 
-    public void OnTowerData()
+    public void OnTowerData(Transform _Tower)
     {
+        Tower SelectTower = _Tower.GetComponent<Tower>();
+
         gameObject.SetActive(true);
+
+        TowerDataViews[0].GetComponent<UIText>().UpdateUIText($"Damage : {SelectTower.TowerDamage}");
+        TowerDataViews[1].GetComponent<UIText>().UpdateUIText($"Rate : {SelectTower.TowerRate}");
+        TowerDataViews[2].GetComponent<UIText>().UpdateUIText($"Range : {SelectTower.TowerRange}");
+        TowerDataViews[3].GetComponent<UIText>().UpdateUIText($"Level : {SelectTower.TowerLevel}");
     }
 
     public void OffTowerData()
@@ -84,7 +91,7 @@ public class TowerPanel : MonoBehaviour
         bool x = gameObject.activeSelf;
     }
 
-    public bool GetActive()
+    public bool IsActive()
     {
         return gameObject.activeSelf;
     }

@@ -7,14 +7,20 @@ public class Tower : MonoBehaviour
     private ETowerState TowerStatus = ETowerState.None;
     private GameObject goBullet;
     [SerializeField]
-    private Transform BulletSpawnPosition;
+    private Transform BulletSpawnPosition; // 총알 발사 위치.(자식 데이터를 가져오는 방법을 모름)
     private Transform AttackTarget = null;
     [SerializeField]
-    private float AttackSpeed = 0.5f;
+    private float AttackSpeed = 0.5f; // 발사 딜레이
     [SerializeField]
-    private float AttackRange = 2.0f;
-    private float AttackTime = 0.0f;
-    private int TowerDamage = 1;
+    private float AttackRange = 2.0f; // 타워 공격 범위
+    private float AttackTime = 0.0f; // 코루틴 대용 시간.
+    private int AttackDamage = 1; // 타워 공격력
+    private int Level = 0;
+
+    public float TowerDamage => AttackDamage;
+    public float TowerRate => AttackSpeed;
+    public float TowerRange => AttackRange;
+    public int TowerLevel => Level + 1;
 
     private void Awake()
     {
@@ -138,7 +144,7 @@ public class Tower : MonoBehaviour
         }
 
         GameObject CreateBullet = ObjectManager.Instance.SpawnBullet(goBullet, this.BulletSpawnPosition.position);
-        CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget, TowerDamage);
+        CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget, AttackDamage);
     }
 
     public ETowerState GetTowerState()
