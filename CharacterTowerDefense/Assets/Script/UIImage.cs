@@ -14,16 +14,17 @@ public class UIImage : MonoBehaviour
         Img = gameObject.AddComponent<Image>();
     }
 
-    public void SetImageTransform()
+    public void SetImageTransform(Sprite _Img = null)
     {
         // 이미지 설정.
-        Sprite Str = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
-        //GetComponent<Image>().sprite = Str;
-        Img.sprite = Str;
+        if(null != _Img)
+        {
+            //Sprite Str = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
+            //Img.sprite = Str;
+            GetComponent<Image>().sprite = _Img;
+        }
 
         // 이미지 사이즈 설정.
-        //RectTransform Rec = GetComponent<RectTransform>();
-        //Rec.sizeDelta = new Vector2(50.0f, 50.0f);
         Rt.sizeDelta = new Vector2(50.0f, 50.0f);
 
         // 이미지 위치 설정.

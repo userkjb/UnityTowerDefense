@@ -6,8 +6,10 @@ public class TowerSpawner : MonoBehaviour
     private Camera MainCamera = null;
     private Ray RayValue = new Ray();
     private RaycastHit hit;
-    [SerializeField]
-    private int SpawnTowerGold = 50;
+    //[SerializeField]
+    //private int SpawnTowerGold = 50;
+    private TowerDataTable TowerDT = null;
+
 
     private void Awake()
     {
@@ -16,6 +18,11 @@ public class TowerSpawner : MonoBehaviour
 
     void OnClick(InputValue _Val)
     {
+        if(null == TowerDT)
+        {
+            TowerDT = DataTableManager.Instance.GetDataTable("TowerDataTable") as TowerDataTable;
+        }
+
         float InputValue = _Val.Get<float>();
         switch (InputValue)
         {
@@ -38,14 +45,14 @@ public class TowerSpawner : MonoBehaviour
                             {
                                 GameObject PlayerStats = ObjectManager.Instance.GetPlayerStats();
                                 int CurGold = PlayerStats.GetComponent<PlayerGold>().GetPlayerGold();
-                                if (CurGold < SpawnTowerGold)
+                                if (CurGold < TowerDT.TowerData[0].Cost)
                                 {
                                     Debug.Log("I'm running out of Gold.");
                                     return;
                                 }
                                 else
                                 {
-                                    PlayerStats.GetComponent<PlayerGold>().SubtractPlayerGold(SpawnTowerGold);
+                                    PlayerStats.GetComponent<PlayerGold>().SubtractPlayerGold(TowerDT.TowerData[0].Cost);
                                 }
 
                                 Vector3 TowerPos = hit.transform.position;

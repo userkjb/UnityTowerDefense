@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class TowerPanel : MonoBehaviour
 {
-    List<GameObject> TowerDataViews= new List<GameObject>();
+    private List<GameObject> TowerDataViews= new List<GameObject>();
+    private GameObject TowerImage = null;
 
     private void Awake()
     {
@@ -36,6 +37,8 @@ public class TowerPanel : MonoBehaviour
         
         UIImage img = TowerImage.GetComponent<UIImage>();
         img.SetImageTransform();
+
+        this.TowerImage = TowerImage;
     }
 
     private void CreateTowerDataViews()
@@ -79,6 +82,8 @@ public class TowerPanel : MonoBehaviour
 
         gameObject.SetActive(true);
 
+        TowerImage.GetComponent<UIImage>().SetImageTransform(SelectTower.TowerSprite);
+
         TowerDataViews[0].GetComponent<UIText>().UpdateUIText($"Damage : {SelectTower.TowerDamage}");
         TowerDataViews[1].GetComponent<UIText>().UpdateUIText($"Rate : {SelectTower.TowerRate}");
         TowerDataViews[2].GetComponent<UIText>().UpdateUIText($"Range : {SelectTower.TowerRange}");
@@ -88,7 +93,6 @@ public class TowerPanel : MonoBehaviour
     public void OffTowerData()
     {
         gameObject.SetActive(false);
-        bool x = gameObject.activeSelf;
     }
 
     public bool IsActive()

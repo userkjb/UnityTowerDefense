@@ -7,7 +7,7 @@ public class ObjectEnum : MonoBehaviour
         None,
         Prefab,
         Enemy,
-        Tower,
+        //Tower,
         Bullet,
         UI,
     }

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        EnemySpriteLoad();
+        SpriteLoad();
 
         ComponentIsAdd();
 
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
         ObjectManager.Instance.SpawnPlayerStats();
     }
 
-    private void EnemySpriteLoad()
+    private void SpriteLoad()
     {
         for (int i = 1; i <= 5; i++)
         {
@@ -72,13 +72,13 @@ public class GameManager : MonoBehaviour
             ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Enemy);
         }
 
-        for(int i = 1; i <= 3; i++)
-        {
-            for(int k = 1; k <= 3; k++)
-            {
-                ResourcesManager.Instance.Load<Sprite>($"Sprites/Tower0{i}_Lv0{k}", ResourceType.Tower);
-            }
-        }
+        //for(int i = 1; i <= 3; i++)
+        //{
+        //    for(int k = 1; k <= 3; k++)
+        //    {
+        //        ResourcesManager.Instance.Load<Sprite>($"Sprites/Tower0{i}_Lv0{k}", ResourceType.Tower);
+        //    }
+        //}
 
         // Bullet
         {
@@ -86,5 +86,7 @@ public class GameManager : MonoBehaviour
         }
 
         ObjectManager.Instance.PrefabLoad();
+
+        DataTableManager.Instance.Load<ScriptableObject>("Prefab/TowerDataTable");
     }
 }

@@ -7,7 +7,7 @@ public class UIText : MonoBehaviour
 {
     private RectTransform Rec = null;
     private TextMeshProUGUI TextView = null;
-    private ETextType TextType = ETextType.None;
+    //private ETextType TextType = ETextType.None;
 
     private void Awake()
     {
@@ -28,31 +28,31 @@ public class UIText : MonoBehaviour
 
         TextView.text = "Damage : 000";
 
-        switch(_Index)
-        {
-            case 0:
-                {
-                    TextType = ETextType.Damage;
-                    break;
-                }
-            case 1:
-                {
-                    TextType = ETextType.Rate;
-                    break;
-                }
-            case 2:
-                {
-                    TextType = ETextType.Range;
-                    break;
-                }
-            case 3:
-                {
-                    TextType = ETextType.Level;
-                    break;
-                }
-            default:
-                break;
-        }
+        //switch(_Index)
+        //{
+        //    case 0:
+        //        {
+        //            TextType = ETextType.Damage;
+        //            break;
+        //        }
+        //    case 1:
+        //        {
+        //            TextType = ETextType.Rate;
+        //            break;
+        //        }
+        //    case 2:
+        //        {
+        //            TextType = ETextType.Range;
+        //            break;
+        //        }
+        //    case 3:
+        //        {
+        //            TextType = ETextType.Level;
+        //            break;
+        //        }
+        //    default:
+        //        break;
+        //}
     }
 
     public void UpdateUIText(string _ValueText)
