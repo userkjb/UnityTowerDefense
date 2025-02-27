@@ -86,7 +86,7 @@ public class EnemyHP : MonoBehaviour
         }
     }
 
-    public void TackDamage(int _Damage)
+    public void TackDamage(float _Damage)
     {
         // ав╬З╢ы╦И,
         if(false == Life)

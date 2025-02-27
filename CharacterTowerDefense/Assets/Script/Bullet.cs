@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
 {
     private Movement2D Movement = null;
     private Transform Target = null;
-    private int BulletDamage = 0;
+    private float BulletDamage = 0;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
     }
 
-    public void BulletSetUp(Transform _Target, int _BulletDamage)
+    public void BulletSetUp(Transform _Target, float _BulletDamage)
     {
         if (this.Target == null)
         {

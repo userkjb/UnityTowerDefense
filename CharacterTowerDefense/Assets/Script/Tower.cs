@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private float AttackRange = 2.0f; // 타워 공격 범위
     private float AttackTime = 0.0f; // 코루틴 대용 시간.
-    private int AttackDamage = 1; // 타워 공격력
+    private float AttackDamage = 1; // 타워 공격력
     private int Level = 0;
 
     public float TowerDamage => AttackDamage;
