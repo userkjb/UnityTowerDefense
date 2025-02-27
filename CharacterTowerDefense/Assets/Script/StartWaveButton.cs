@@ -7,13 +7,9 @@ public class StartWaveButton : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ButtonSetting();
-    }
-
-    private void ButtonSetting()
-    {
-        Button StartButton = gameObject.GetComponent<Button>();
-        StartButton.onClick.AddListener(StartButtonCallback);
+        //gameObject.GetComponent<Button>().onClick.AddListener(delegate() { StartButtonCallback(); });
+        //gameObject.GetComponent<Button>().onClick.AddListener(StartButtonCallback);
+        gameObject.GetComponent<Button>().onClick.AddListener(delegate { StartButtonCallback(); });
     }
 
     private void StartButtonCallback()

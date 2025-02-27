@@ -34,6 +34,7 @@ public class UIButton : MonoBehaviour
             BtnInText = _Text;
         }
 
+        // 부모 설정.
         BtnInText.GetComponent<RectTransform>().SetParent(gameObject.transform);
     }
 
