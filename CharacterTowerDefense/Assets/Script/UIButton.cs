@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static ObjectEnum;
 
 public class UIButton : MonoBehaviour
 {
@@ -8,12 +9,10 @@ public class UIButton : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.AddComponent<RectTransform>();
+        Rec = gameObject.AddComponent<RectTransform>();
         gameObject.AddComponent<CanvasRenderer>();
         gameObject.AddComponent<Image>();
         gameObject.AddComponent<Button>();
-
-        Rec = gameObject.GetComponent<RectTransform>();
     }
 
     public void SetButtonPos(Vector3 _Pos)
@@ -47,5 +46,35 @@ public class UIButton : MonoBehaviour
         }
 
         BtnInText.BtnText(_Data);
+    }
+
+    public void AddOnClickEventFunction(EButtonType _Type)
+    {
+        switch (_Type)
+        {
+            case EButtonType.Upgrade:
+                {
+                    GetComponent<Button>().onClick.AddListener(UpgradeCallBack);
+                    break;
+                }
+            case EButtonType.Sell:
+                {
+                    GetComponent<Button>().onClick.AddListener(SellCallBack);
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+
+    private void UpgradeCallBack()
+    {
+        Debug.Log("Upgrade");
+    }
+
+    private void SellCallBack()
+    {
+        Debug.Log("Sell");
     }
 }

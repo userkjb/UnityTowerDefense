@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static ObjectEnum;
 
 public class TowerPanel : MonoBehaviour
 {
@@ -63,6 +64,7 @@ public class TowerPanel : MonoBehaviour
             TowerButton.GetComponent<UIButton>().SetButtonPos(Pos);
             TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
             TowerButton.GetComponent<UIButton>().SetBtnText("Upgrade");
+            TowerButton.GetComponent<UIButton>().AddOnClickEventFunction(EButtonType.Upgrade);
         }
 
         {
@@ -73,6 +75,7 @@ public class TowerPanel : MonoBehaviour
             TowerButton.GetComponent<UIButton>().SetButtonPos(Pos);
             TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
             TowerButton.GetComponent<UIButton>().SetBtnText("Sell");
+            TowerButton.GetComponent<UIButton>().AddOnClickEventFunction(EButtonType.Sell);
         }
     }
 
