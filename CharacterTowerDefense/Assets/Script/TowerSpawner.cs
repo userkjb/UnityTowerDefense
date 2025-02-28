@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TowerSpawner : MonoBehaviour
 {
+    private bool IsUI = false;
     private Camera MainCamera = null;
     private Ray RayValue = new Ray();
     private RaycastHit hit;
@@ -14,6 +16,12 @@ public class TowerSpawner : MonoBehaviour
     private void Awake()
     {
         MainCamera = Camera.main;
+    }
+
+    private void Update()
+    {
+        // UI Ã¼Å©
+        IsUI = EventSystem.current.IsPointerOverGameObject();
     }
 
     void OnClick(InputValue _Val)
@@ -88,6 +96,10 @@ public class TowerSpawner : MonoBehaviour
                     else
                     {
                         // ºó °ø°£.
+                        if(true == IsUI)
+                        {
+                            return;
+                        }
                         GameObject go = UIManager.Instance.GetTowerUI("TowerPanel");
                         TowerPanel TowerPanel = go.GetComponent<TowerPanel>();
                         if (false == TowerPanel.IsActive())
