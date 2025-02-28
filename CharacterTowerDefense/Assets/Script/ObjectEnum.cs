@@ -36,4 +36,10 @@ public class ObjectEnum : MonoBehaviour
         Range,
         Level,
     }
+
+    public enum EButtonType
+    {
+        Upgrade,
+        Sell,
+    }
 }
