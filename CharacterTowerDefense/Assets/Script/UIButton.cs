@@ -6,6 +6,13 @@ public class UIButton : MonoBehaviour
 {
     private RectTransform Rec = null;
     private UIText BtnInText = null;
+    private Tower SelectTower = null;
+    public void Set_Btn_Tower(Tower _Tower)
+    {
+        if (null == _Tower)
+            return;
+        SelectTower = _Tower;
+    }
 
     private void Awake()
     {
@@ -71,10 +78,12 @@ public class UIButton : MonoBehaviour
     private void UpgradeCallBack()
     {
         Debug.Log("Upgrade");
+        SelectTower.TowerUpgrade();
     }
 
     private void SellCallBack()
     {
         Debug.Log("Sell");
+        SelectTower.TowerSell();
     }
 }

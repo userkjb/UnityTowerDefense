@@ -8,6 +8,8 @@ public class TowerPanel : MonoBehaviour
 {
     private List<GameObject> TowerDataViews= new List<GameObject>();
     private GameObject TowerImage = null;
+    private GameObject UpgradeBtn = null;
+    private GameObject SellBtn = null;
 
     private void Awake()
     {
@@ -65,6 +67,8 @@ public class TowerPanel : MonoBehaviour
             TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
             TowerButton.GetComponent<UIButton>().SetBtnText("Upgrade");
             TowerButton.GetComponent<UIButton>().AddOnClickEventFunction(EButtonType.Upgrade);
+
+            UpgradeBtn = TowerButton;
         }
 
         {
@@ -76,14 +80,23 @@ public class TowerPanel : MonoBehaviour
             TowerButton.GetComponent<UIButton>().SetButtonSize(Size);
             TowerButton.GetComponent<UIButton>().SetBtnText("Sell");
             TowerButton.GetComponent<UIButton>().AddOnClickEventFunction(EButtonType.Sell);
+
+            SellBtn = TowerButton;
         }
     }
 
+    /// <summary>
+    /// 선택한 Tower 정보 출력.
+    /// </summary>
+    /// <param name="_Tower">Select Tower</param>
     public void OnTowerData(Transform _Tower)
     {
         Tower SelectTower = _Tower.GetComponent<Tower>();
 
         gameObject.SetActive(true);
+
+        UpgradeBtn.GetComponent<UIButton>().Set_Btn_Tower(SelectTower);
+        SellBtn.GetComponent<UIButton>().Set_Btn_Tower(SelectTower);
 
         TowerImage.GetComponent<UIImage>().SetImageTransform(SelectTower.TowerSprite);
 

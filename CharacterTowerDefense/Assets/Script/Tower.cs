@@ -157,8 +157,34 @@ public class Tower : MonoBehaviour
         CreateBullet.GetComponent<Bullet>().BulletSetUp(_AttackTarget, TowerData.TowerData[Level].Damage);
     }
 
-    public ETowerState GetTowerState()
+
+
+    public void TowerUpgrade()
     {
-        return TowerStatus;
+        Debug.Log($"{Level}");
+        PlayerGold PlayerGold = null;
+        PlayerGold = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
+
+        int PlayerGoldValue = PlayerGold.GetPlayerGold(); // 지금 가지고 있는 골드.
+        int TowerUpgradeGold = TowerData.TowerData[Level + 1].Cost; // 업그레이드에 필요한 골드.
+
+        
+        if(PlayerGoldValue >= TowerUpgradeGold)
+        {
+            // 골드 차감 해주고.
+            PlayerGold.SubtractPlayerGold(TowerUpgradeGold);
+
+            Level++;
+            gameObject.GetComponent<SpriteRenderer>().sprite = TowerData.TowerData[Level].Sprite;
+        }
+
+
+        // UI Updage [TODO]
+        Transform MainCanvas = UIManager.Instance.GetCanvas().transform.GetChild(2);
+    }
+
+    public void TowerSell()
+    {
+        Debug.Log("Sell!!!!!");
     }
 }
