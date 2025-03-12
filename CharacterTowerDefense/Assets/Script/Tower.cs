@@ -5,9 +5,11 @@ using static TowerDataTable;
 
 public class Tower : MonoBehaviour
 {
+    private SpriteRenderer TowerBasicRenderer = null;
     private ETowerState TowerStatus = ETowerState.None;
     private TowerDataTable TowerData;
     private GameObject goBullet;
+    private UITowerAttackRange RangeUI = null;
     [SerializeField]
     private Transform BulletSpawnPosition; // 총알 발사 위치.
     private Transform AttackTarget = null;
@@ -27,7 +29,7 @@ public class Tower : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.AddComponent<SpriteRenderer>();
+        TowerBasicRenderer = gameObject.AddComponent<SpriteRenderer>();
         gameObject.AddComponent<BoxCollider>();
     }
 
@@ -38,9 +40,9 @@ public class Tower : MonoBehaviour
         TowerData = so as TowerDataTable;
 
         gameObject.GetComponent<Transform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        TowerBasicRenderer.sortingOrder = 1;
         //gameObject.GetComponent<SpriteRenderer>().sprite = ResourcesManager.Instance.GetSprite("Tower01_Lv01");
-        gameObject.GetComponent<SpriteRenderer>().sprite = TowerData.TowerData[Level].Sprite;
+        TowerBasicRenderer.sprite = TowerData.TowerData[Level].Sprite;
 
         goBullet = ResourcesManager.Instance.GetPrefab("Bullet");
         if(goBullet == null)
@@ -48,6 +50,12 @@ public class Tower : MonoBehaviour
             Debug.LogError("Bullet Prefab Is Null");
             return;
         }
+
+        GameObject goRangeUI = UIManager.Instance.CreateTowerRangeUI();
+        goRangeUI.transform.SetParent(gameObject.transform);
+
+        RangeUI = goRangeUI.GetComponent<UITowerAttackRange>();
+        RangeUI.SetComponent(transform.position, TowerData.TowerData[Level].Range);
 
         ChangeTowerState(ETowerState.SearchTarget);
     }
@@ -178,6 +186,8 @@ public class Tower : MonoBehaviour
         // UI Image 동기화.
         Transform TowerImageWidget = UIManager.Instance.GetTowerUI("TowerPanel").transform.GetChild(0);
         TowerImageWidget.GetComponent<UIImage>().SetImageTransform(TowerData.TowerData[Level].Sprite);
+
+        RangeUI.SetComponent(transform.position, TowerData.TowerData[Level].Range);
     }
 
     public void TowerSell()
