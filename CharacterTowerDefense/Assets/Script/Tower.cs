@@ -178,9 +178,9 @@ public class Tower : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sprite = TowerData.TowerData[Level].Sprite;
         }
 
-
-        // UI Updage [TODO]
-        Transform MainCanvas = UIManager.Instance.GetCanvas().transform.GetChild(2);
+        // UI Image µø±‚»≠.
+        Transform TowerImageWidget = UIManager.Instance.GetTowerUI("TowerPanel").transform.GetChild(0);
+        TowerImageWidget.GetComponent<UIImage>().SetImageTransform(TowerData.TowerData[Level].Sprite);
     }
 
     public void TowerSell()
