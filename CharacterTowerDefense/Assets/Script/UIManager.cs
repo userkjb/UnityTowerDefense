@@ -86,7 +86,6 @@ public class UIManager : Singleton<UIManager>
         return go;
     }
 
-
     public GameObject CreateButton(string _Btn_Name)
     {
         if (!ResourcesManager.Instance.IsPrefab("UIButton"))
@@ -124,5 +123,17 @@ public class UIManager : Singleton<UIManager>
     {
         bool Is = TowerUI.ContainsKey(_Name);
         return Is;
+    }
+
+    /// <summary>
+    /// Data Is Tower.
+    /// </summary>
+    /// <returns></returns>
+    public GameObject CreateTowerRangeUI()
+    {
+        GameObject Prefab = ResourcesManager.Instance.GetPrefab("UITowerAttackRange");
+        GameObject go = Instantiate(Prefab);
+        go.GetComponent<UITowerAttackRange>().SetComponent();
+        return go;
     }
 }
