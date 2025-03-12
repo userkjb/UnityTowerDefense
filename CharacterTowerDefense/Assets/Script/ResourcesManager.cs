@@ -51,16 +51,23 @@ public class ResourcesManager : Singleton<ResourcesManager>
                         AllResources.Add(name, sprite);
                     break;
                 }
-            //case ResourceType.Tower:
-            //    {
-            //        // $"Sprites/Tower0i_Lv0k"
-            //        Object ob = Resources.Load<T>(_path);
-            //        Sprite sprite = ob as Sprite;
-            //        name = name.Substring(name.Length - 12);
-            //        if (!IsResource(name))
-            //            AllResources.Add(name, sprite);
-            //        break;
-            //    }
+            case ResourceType.Tower:
+                {
+                    //    // $"Sprites/Tower0i_Lv0k"
+                    //    Object ob = Resources.Load<T>(_path);
+                    //    Sprite sprite = ob as Sprite;
+                    //    name = name.Substring(name.Length - 12);
+                    //    if (!IsResource(name))
+                    //        AllResources.Add(name, sprite);
+
+                    // Sprites/TowerAttackRange
+                    Object ob = Resources.Load<T>(_path);
+                    Sprite sprite = ob as Sprite;
+                    name = name.Substring(8);
+                    if (!IsResource(name))
+                        AllResources.Add(name, sprite);
+                    break;
+                }
             case ResourceType.Bullet:
                 {
                     // Sprites/Projectile01
