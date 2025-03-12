@@ -161,14 +161,11 @@ public class Tower : MonoBehaviour
 
     public void TowerUpgrade()
     {
-        Debug.Log($"{Level}");
-        PlayerGold PlayerGold = null;
-        PlayerGold = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
+        PlayerGold PlayerGold = ObjectManager.Instance.GetPlayerStats().GetComponent<PlayerGold>();
 
         int PlayerGoldValue = PlayerGold.GetPlayerGold(); // 지금 가지고 있는 골드.
         int TowerUpgradeGold = TowerData.TowerData[Level + 1].Cost; // 업그레이드에 필요한 골드.
 
-        
         if(PlayerGoldValue >= TowerUpgradeGold)
         {
             // 골드 차감 해주고.

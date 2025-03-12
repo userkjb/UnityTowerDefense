@@ -77,13 +77,11 @@ public class UIButton : MonoBehaviour
 
     private void UpgradeCallBack()
     {
-        Debug.Log("Upgrade");
         SelectTower.TowerUpgrade();
     }
 
     private void SellCallBack()
     {
-        Debug.Log("Sell");
         SelectTower.TowerSell();
     }
 }
