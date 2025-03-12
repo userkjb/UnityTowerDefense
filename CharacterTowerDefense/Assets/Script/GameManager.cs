@@ -85,8 +85,15 @@ public class GameManager : MonoBehaviour
             ResourcesManager.Instance.Load<Sprite>("Sprites/Projectile01", ResourceType.Bullet);
         }
 
+        // Tower UI
+        {
+            ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Tower);
+        }
+
+        // PreFab
         ObjectManager.Instance.PrefabLoad();
 
+        // Data Table
         DataTableManager.Instance.Load<ScriptableObject>("Prefab/TowerDataTable");
     }
 }
