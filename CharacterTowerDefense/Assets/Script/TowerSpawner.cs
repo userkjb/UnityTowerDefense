@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -41,7 +42,10 @@ public class TowerSpawner : MonoBehaviour
             case 1: // Down
                 {
                     Vector2 MousePosition = Mouse.current.position.value;
-                    
+
+                    // 타워의 RangeUI를 끈다.
+                    TowerRangeUIOff();
+
                     RayValue = MainCamera.ScreenPointToRay(MousePosition);
                     if(Physics.Raycast(RayValue, out hit, Mathf.Infinity))
                     {
@@ -71,6 +75,7 @@ public class TowerSpawner : MonoBehaviour
                         }
                         else if(hit.transform.CompareTag("Tower"))
                         {
+                            // 클릭된 타워를 가져와서.
                             Transform HitTower = hit.transform;
                             if(null == HitTower)
                             {
@@ -78,12 +83,15 @@ public class TowerSpawner : MonoBehaviour
                                 return;
                             }
 
+                            // 캔버스를 불러오고,
                             Canvas MainCanvas = UIManager.Instance.GetCanvas();
                             if(null == MainCanvas)
                             {
                                 Debug.LogError("MainCanvas Is Null");
                                 return;
                             }
+
+                            // 캔버스의 자식들 중에 TowerPanel에 타워 정보를 넘겨준다.
                             // 이 코드는 조금 위험.
                             TowerPanel TowerPan = MainCanvas.transform.GetChild(2).GetComponent<TowerPanel>();
                             TowerPan.OnTowerData(HitTower);
@@ -112,6 +120,15 @@ public class TowerSpawner : MonoBehaviour
                 }
             default:
                 break;
+        }
+    }
+
+    private void TowerRangeUIOff()
+    {
+        List<Tower> Towers = ObjectManager.Instance.GetTowers();
+        foreach(Tower tower in Towers)
+        {
+            tower.OffRange();
         }
     }
 }

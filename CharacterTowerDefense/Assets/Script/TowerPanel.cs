@@ -10,6 +10,7 @@ public class TowerPanel : MonoBehaviour
     private GameObject TowerImage = null;
     private GameObject UpgradeBtn = null;
     private GameObject SellBtn = null;
+    Tower SelectTower = null;
 
     private void Awake()
     {
@@ -91,7 +92,7 @@ public class TowerPanel : MonoBehaviour
     /// <param name="_Tower">Select Tower</param>
     public void OnTowerData(Transform _Tower)
     {
-        Tower SelectTower = _Tower.GetComponent<Tower>();
+        SelectTower = _Tower.GetComponent<Tower>();
 
         gameObject.SetActive(true);
 
@@ -104,10 +105,16 @@ public class TowerPanel : MonoBehaviour
         TowerDataViews[1].GetComponent<UIText>().UpdateUIText($"Rate : {SelectTower.TowerRate}");
         TowerDataViews[2].GetComponent<UIText>().UpdateUIText($"Range : {SelectTower.TowerRange}");
         TowerDataViews[3].GetComponent<UIText>().UpdateUIText($"Level : {SelectTower.TowerLevel}");
+
+        SelectTower.OnRange();
     }
 
     public void OffTowerData()
     {
+        if (null != SelectTower)
+        {
+            SelectTower.OffRange();
+        }
         gameObject.SetActive(false);
     }
 

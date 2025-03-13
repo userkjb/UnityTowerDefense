@@ -190,6 +190,22 @@ public class Tower : MonoBehaviour
         RangeUI.SetComponent(transform.position, TowerData.TowerData[Level].Range);
     }
 
+    public void OnRange()
+    {
+        if (null == RangeUI)
+            return;
+
+        RangeUI.OnTowerAttackRange();
+    }
+
+    public void OffRange()
+    {
+        if (null == RangeUI)
+            return;
+
+        RangeUI.OffTowerAttackRange();
+    }
+
     public void TowerSell()
     {
         Debug.Log("Sell!!!!!");

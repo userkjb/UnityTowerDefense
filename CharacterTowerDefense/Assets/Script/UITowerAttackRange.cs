@@ -28,9 +28,15 @@ public class UITowerAttackRange : MonoBehaviour
         transform.localScale = Vector3.one * Value;
     }
 
+    public void OnTowerAttackRange()
+    {
+        if(gameObject.activeSelf == false)
+            gameObject.SetActive(true);
+    }
 
     public void OffTowerAttackRange()
     {
-        gameObject.SetActive(false);
+        if (gameObject.activeSelf == true)
+            gameObject.SetActive(false);
     }
 }
