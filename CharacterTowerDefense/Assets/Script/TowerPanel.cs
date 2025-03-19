@@ -10,7 +10,7 @@ public class TowerPanel : MonoBehaviour
     private GameObject TowerImage = null;
     private GameObject UpgradeBtn = null;
     private GameObject SellBtn = null;
-    Tower SelectTower = null;
+    private Tower SelectTower = null;
 
     private void Awake()
     {
