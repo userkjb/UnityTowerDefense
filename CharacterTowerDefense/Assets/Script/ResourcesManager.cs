@@ -31,6 +31,15 @@ public class ResourcesManager : Singleton<ResourcesManager>
                     Resources.Load<T>(_path);
                     break;
                 }
+            case ResourceType.Sprite:
+                {
+                    Object ob = Resources.Load<T>(_path);
+                    Sprite sprite = ob as Sprite;
+                    name = name.Substring(8);
+                    if (!IsPrefab(name))
+                        AllResources.Add(name, sprite);
+                    break;
+                }
             case ResourceType.Prefab:
                 {
                     // Prefab/Enemy
@@ -41,53 +50,53 @@ public class ResourcesManager : Singleton<ResourcesManager>
                         AllPrefab.Add(name, go);
                     break;
                 }
-            case ResourceType.Enemy:
-                {
-                    //$"Sprites/Enemy0{i}"
-                    Object ob = Resources.Load<T>(_path);
-                    Sprite sprite = ob as Sprite;
-                    name = name.Substring(name.Length - 7);
-                    if(!IsResource(name))
-                        AllResources.Add(name, sprite);
-                    break;
-                }
-            case ResourceType.Tower:
-                {
-                    //    // $"Sprites/Tower0i_Lv0k"
-                    //    Object ob = Resources.Load<T>(_path);
-                    //    Sprite sprite = ob as Sprite;
-                    //    name = name.Substring(name.Length - 12);
-                    //    if (!IsResource(name))
-                    //        AllResources.Add(name, sprite);
+            //case ResourceType.Enemy:
+            //    {
+            //        //$"Sprites/Enemy0{i}"
+            //        Object ob = Resources.Load<T>(_path);
+            //        Sprite sprite = ob as Sprite;
+            //        name = name.Substring(name.Length - 7);
+            //        if(!IsResource(name))
+            //            AllResources.Add(name, sprite);
+            //        break;
+            //    }
+            //case ResourceType.Tower:
+            //    {
+            //        //    // $"Sprites/Tower0i_Lv0k"
+            //        //    Object ob = Resources.Load<T>(_path);
+            //        //    Sprite sprite = ob as Sprite;
+            //        //    name = name.Substring(name.Length - 12);
+            //        //    if (!IsResource(name))
+            //        //        AllResources.Add(name, sprite);
 
-                    // Sprites/TowerAttackRange
-                    Object ob = Resources.Load<T>(_path);
-                    Sprite sprite = ob as Sprite;
-                    name = name.Substring(8);
-                    if (!IsResource(name))
-                        AllResources.Add(name, sprite);
-                    break;
-                }
-            case ResourceType.Bullet:
-                {
-                    // Sprites/Projectile01
-                    Object ob = Resources.Load<T>(_path);
-                    Sprite sprite = ob as Sprite;
-                    name = name.Substring(8);
-                    if (!IsResource(name))
-                        AllResources.Add(name, sprite);
-                    break;
-                }
-            case ResourceType.UI:
-                {
-                    //Prefab/TowerPanel
-                    Object ob = Resources.Load<T>(_path);
-                    GameObject go = ob as GameObject;
-                    name = name.Substring(7);
-                    if (!IsPrefab(name))
-                        AllPrefab.Add(name, go);
-                    break;
-                }
+            //        // Sprites/TowerAttackRange
+            //        Object ob = Resources.Load<T>(_path);
+            //        Sprite sprite = ob as Sprite;
+            //        name = name.Substring(8);
+            //        if (!IsResource(name))
+            //            AllResources.Add(name, sprite);
+            //        break;
+            //    }
+            //case ResourceType.Bullet:
+            //    {
+            //        // Sprites/Projectile01
+            //        Object ob = Resources.Load<T>(_path);
+            //        Sprite sprite = ob as Sprite;
+            //        name = name.Substring(8);
+            //        if (!IsResource(name))
+            //            AllResources.Add(name, sprite);
+            //        break;
+            //    }
+            //case ResourceType.UI:
+            //    {
+            //        //Prefab/TowerPanel
+            //        Object ob = Resources.Load<T>(_path);
+            //        Sprite sprite = ob as Sprite;
+            //        name = name.Substring(8);
+            //        if (!IsPrefab(name))
+            //            AllResources.Add(name, sprite);
+            //        break;
+            //    }
             default:
                 break;
         }

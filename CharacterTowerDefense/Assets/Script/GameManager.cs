@@ -69,7 +69,8 @@ public class GameManager : MonoBehaviour
         for (int i = 1; i <= 5; i++)
         {
             //ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}");
-            ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Enemy);
+            //ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Enemy);
+            ResourcesManager.Instance.Load<Sprite>($"Sprites/Enemy0{i}", ResourceType.Sprite);
         }
 
         //for(int i = 1; i <= 3; i++)
@@ -82,12 +83,14 @@ public class GameManager : MonoBehaviour
 
         // Bullet
         {
-            ResourcesManager.Instance.Load<Sprite>("Sprites/Projectile01", ResourceType.Bullet);
+            //ResourcesManager.Instance.Load<Sprite>("Sprites/Projectile01", ResourceType.Bullet);
+            ResourcesManager.Instance.Load<Sprite>("Sprites/Projectile01", ResourceType.Sprite);
         }
 
         // Tower UI
         {
-            ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Tower);
+            //ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Tower);
+            ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Sprite);
         }
 
         // PreFab

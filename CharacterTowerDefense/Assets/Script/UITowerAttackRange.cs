@@ -9,7 +9,8 @@ public class UITowerAttackRange : MonoBehaviour
 
         if (!ResourcesManager.Instance.IsResource("TowerAttackRange"))
         {
-            ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Tower);
+            //ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Tower);
+            ResourcesManager.Instance.Load<Sprite>("Sprites/TowerAttackRange", ResourceType.Sprite);
         }
     }
 

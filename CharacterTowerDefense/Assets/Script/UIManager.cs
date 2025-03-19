@@ -36,7 +36,7 @@ public class UIManager : Singleton<UIManager>
     {
         if(!ResourcesManager.Instance.IsPrefab($"{_Name}"))
         {
-            ResourcesManager.Instance.Load<GameObject>($"Prefab/{_Name}", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>($"Prefab/{_Name}", ResourceType.Prefab);
         }
 
         GameObject Prefab = ResourcesManager.Instance.GetPrefab(_Name);
@@ -49,7 +49,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (!ResourcesManager.Instance.IsPrefab("UIImage"))
         {
-            ResourcesManager.Instance.Load<GameObject>("Prefab/UIImage", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIImage", ResourceType.Prefab);
         }
 
         // 중복 체크
@@ -69,7 +69,7 @@ public class UIManager : Singleton<UIManager>
     {
         if (!ResourcesManager.Instance.IsPrefab("UIText"))
         {
-            ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.Prefab);
         }
 
         // 중복 체크
@@ -90,11 +90,11 @@ public class UIManager : Singleton<UIManager>
     {
         if (!ResourcesManager.Instance.IsPrefab("UIButton"))
         {
-            ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.Prefab);
         }
         if (!ResourcesManager.Instance.IsPrefab("UIText"))
         {
-            ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.UI);
+            ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.Prefab);
         }
 
         // TODO Upgrage or Sell

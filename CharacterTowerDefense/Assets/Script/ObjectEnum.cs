@@ -5,6 +5,7 @@ public class ObjectEnum : MonoBehaviour
     public enum ResourceType
     {
         None,
+        Sprite,
         Prefab,
         Enemy,
         Tower,
