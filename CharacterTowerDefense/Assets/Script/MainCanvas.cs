@@ -18,8 +18,18 @@ public class MainCanvas : MonoBehaviour
 
     private void CreatePanel()
     {
-        GameObject TowerPanel = UIManager.Instance.CreatePanel("TowerPanel");
+        // TowerPanel
+        {
+            GameObject TowerPanel = UIManager.Instance.CreatePanel("TowerPanel");
 
-        TowerPanel.transform.SetParent(gameObject.transform);
+            TowerPanel.transform.SetParent(gameObject.transform);
+        }
+
+        // Select Tower Panel
+        {
+            GameObject SelectTower = UIManager.Instance.CreatePanel("SelectTowerPanel");
+
+            SelectTower.transform.SetParent(gameObject.transform);
+        }
     }
 }

@@ -76,7 +76,7 @@ public class ObjectManager : Singleton<ObjectManager>
         ResourcesManager.Instance.Load<GameObject>("Prefab/UIText", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/UIButton", ResourceType.Prefab);
         ResourcesManager.Instance.Load<GameObject>("Prefab/UITowerAttackRange", ResourceType.Prefab);
-        ResourcesManager.Instance.Load<GameObject>("Prefab/UITowerConstruction", ResourceType.Prefab);
+        ResourcesManager.Instance.Load<GameObject>("Prefab/SelectTowerPanel", ResourceType.Prefab);
     }
 
     public void SpawnPlayerStats()
@@ -216,17 +216,5 @@ public class ObjectManager : Singleton<ObjectManager>
         }
 
         return Instantiate(_Bullet, _Pos, Quaternion.identity);
-    }
-
-    public GameObject SpawnUI(Vector3 _Pos)
-    {
-        GameObject go = ResourcesManager.Instance.GetPrefab("UITowerConstruction");
-        if(go == null)
-        {
-            Debug.LogError("Tower Construction UI is Null");
-            return null;
-        }
-
-        return Instantiate(go, _Pos, Quaternion.identity);
     }
 }

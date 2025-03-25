@@ -72,11 +72,13 @@ public class TowerSpawner : MonoBehaviour
                                 ObjectManager.Instance.SpawnTower(TowerPos);
                                 TileTower.IsTower = true;
 
-                                // test
+                                // Tower Spawn UI test
                                 {
-                                    GameObject go = ObjectManager.Instance.SpawnUI(TowerPos);
-                                    go.GetComponent<UITowerConstruction>().OnTowerConstruction(TowerPos);
+                                    GameObject go = UIManager.Instance.GetTowerUI("SelectTowerPanel");
+                                    SelectTowerPanel pn = go.GetComponent<SelectTowerPanel>();
 
+                                    pn.SetPosition(TowerPos);
+                                    pn.OnSelectTower();
                                 }
                             }
                         }
